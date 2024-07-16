@@ -7,6 +7,9 @@ import { SharedModule } from './shared/shared.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ShopModule } from './shop/shop.module';
+import { ObjectService } from './services/object.service';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { HttpConfigInterceptor } from './services/http.interceptor';
 
 
 
@@ -19,6 +22,7 @@ import { ShopModule } from './shop/shop.module';
     AppRoutingModule,
     SharedModule,
     ShopModule,
+    HttpClientModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot({
       timeOut: 3000,
@@ -27,7 +31,13 @@ import { ShopModule } from './shop/shop.module';
       positionClass:'toast-top-center'
     }),
   ],
-  providers: [],
+  providers: [
+    ObjectService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpConfigInterceptor,
+      multi: true
+    }],
   bootstrap: [AppComponent]
 })
 
