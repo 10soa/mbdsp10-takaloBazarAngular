@@ -21,6 +21,10 @@ const routes: Routes = [
     loadChildren: () => import('./pages/pages.module').then(m => m.PagesModule)
   },
   {
+    path: 'object',
+    loadChildren: () => import('./object/objects.module').then(m => m.ObjectsModule)
+  },
+  {
     path: '**',
     component:NotFoundComponent
   },

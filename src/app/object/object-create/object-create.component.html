@@ -1,0 +1,85 @@
+<app-header-one [transparent]="true" [white_bg]="true"></app-header-one>
+
+<main>
+
+  <app-breadcrumb-one title="Nouvel Object" subtitle="Nouvel Objet"></app-breadcrumb-one>
+
+  <section class="cart-area pt-100 pb-100">
+    <div class="container">
+      <form id="contact-form" #objectForm="ngForm" (ngSubmit)="createObject(objectForm)">
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="row">
+              <div class="col-xl-6 col-lg-6">
+                <div class="contact__input mb-20" [ngClass]="{'has-error': objectForm.submitted && !name.valid}">
+                  <label>Nom <span class="required">*</span></label>
+                  <input placeholder="Nom de l'objet" id="name" [(ngModel)]="object.name" name="name" required
+                    #name="ngModel" />
+                  <div *ngIf="objectForm.submitted && !name.valid" class="error-message">
+                    Nom est requis.
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xl-12">
+                <div class="contact__input mb-45" [ngClass]="{'has-error': objectForm.submitted && !category_id.valid}">
+                  <div class="product__modal-input size mb-20">
+                    <label>Categorie <i class="fas fa-star-of-life"></i></label>
+                    <select name="category_id" id="category_id" [(ngModel)]="object.category_id" required
+                      #category_id="ngModel">
+                      <option *ngFor="let category of categories" [value]="category.id">
+                        {{ category.name }}
+                      </option>
+                    </select>
+                    <div *ngIf="objectForm.submitted && !category_id.valid" class="error-message">
+                      Categorie est requise.
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xl-12">
+                <div class="contact__input mb-45" [ngClass]="{'has-error': objectForm.submitted && !description.valid}">
+                  <label>Description <span class="required">*</span></label>
+                  <textarea placeholder="Description de l'objet" cols="30" rows="10" id="description"
+                    [(ngModel)]="object.description" name="description" required #description="ngModel"></textarea>
+                  <div *ngIf="objectForm.submitted && !description.valid" class="error-message">
+                    Description est requise.
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xl-12">
+                <div class="contact__submit">
+                  <button type="submit" class="os-btn os-btn-black">
+                    <span *ngIf="loading" class="spinner-border spinner-border-sm" role="status"
+                      aria-hidden="true"></span>
+                    Ajouter
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-sm-6 center">
+            <div class="">
+              <p>Donner une image de votre objet <span class="required">*</span></p>
+              <input type="file" (change)="onFileSelected($event)" />
+            </div>
+            <hr>
+            <div *ngIf="file" class="file-preview">
+              <p>Selected file: {{ file.name }}</p>
+              <img class="img os-btn-2" *ngIf="filePreview" [src]="filePreview" alt="File Preview" />
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<app-footer-one></app-footer-one>

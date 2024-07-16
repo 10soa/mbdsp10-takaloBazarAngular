@@ -1,0 +1,22 @@
+.img{
+  max-width: 100%;
+  max-height: 330px;
+}
+
+.center{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.has-error input,
+.has-error select,
+.has-error textarea {
+  border-color: red;
+}
+
+.error-message {
+  color: red;
+  font-size: 12px;
+}
+
