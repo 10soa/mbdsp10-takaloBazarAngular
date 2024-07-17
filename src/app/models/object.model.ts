@@ -1,3 +1,6 @@
+import { Category } from "./category.model";
+import { User } from "./user.model";
+
 export interface Object {
   id: number;
   name: string;
@@ -9,4 +12,6 @@ export interface Object {
   user_id?: number;
   category_id: number;
   deleted_At?: Date;
+  category?: Category;
+  user?: User;
 }
