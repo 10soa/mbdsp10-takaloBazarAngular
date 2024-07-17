@@ -1,0 +1,45 @@
+<main>
+  <!-- login Area start -->
+  <section class="login-area pt-100 pb-100">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2">
+                <div class="basic-login">
+                    <h3 class="text-center mb-60">Authentification - Login</h3>
+                    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                        <div class="mb-20">
+                          <label for="email">Pseudo <span>**</span></label>
+                          <input id="email" type="text" placeholder="Entrer votre pseudo..." formControlName="email" (input)="onInputChange()" required/>
+                          <span *ngIf="(email?.hasError('required') && email?.touched) || (formSubmitted && !email?.value)" class="text-danger">
+                            Veuillez entrer votre Pseudo!
+                          </span>
+                        </div>
+
+                        <div class="mb-20">
+                          <label for="pass">Mot de passe <span>**</span></label>
+                          <input id="pass" type="password" placeholder="Entrer votre mot de passe..." formControlName="password" (input)="onInputChange()" required/>
+                          <span *ngIf=" (password?.hasError('required') && password?.touched) || (formSubmitted && !password?.value)" class="text-danger">
+                            Veuillez entrer votre Mot de passe!
+                          </span>
+                        </div>
+                        <div class="mb-20">
+                          <span *ngIf="error" class="text-danger">
+                            {{error}}
+                          </span>
+                        </div>
+                        <button class="os-btn w-100">Se connecter <span *ngIf="loading" class="spinner-border spinner-border-sm" role="status"
+                          aria-hidden="true"></span></button>
+                        <div class="or-divide"><span>ou</span></div>
+                        <a routerLink="/pages/register" class="os-btn os-btn-black w-100">Pas encore de compte?</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+  </section>
+  <!-- login Area End-->
+</main>
+
+<!-- footer start -->
+<app-footer-one></app-footer-one>
+<!-- footer end -->
