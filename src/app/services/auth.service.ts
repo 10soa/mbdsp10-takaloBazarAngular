@@ -19,6 +19,6 @@ export class AuthService {
   }
 
   logout(): Observable<any> {
-    return this.http.post<any>(this.authUrl+"/user/logout", {});
+    return this.http.post<any>(this.authUrl+"/logout", {});
   }
 }
