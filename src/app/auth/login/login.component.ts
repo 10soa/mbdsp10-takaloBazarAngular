@@ -4,7 +4,7 @@ import { FormControl, FormGroup,Validators } from '@angular/forms';
 import { AuthService} from 'src/app/services/auth.service';
 import { RouterLink } from '@angular/router';
 import { Router } from '@angular/router';
-
+import { TOKEN_NAME,USERID,USERNAME } from 'src/app/constants/app.constants';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -50,8 +50,9 @@ export class LoginComponent {
             this.error = "";
             const now = new Date();
             localStorage.setItem('date_expiry', (now.getTime() + 24 * 60 * 60 * 1000).toString());
-            localStorage.setItem('username', result.user.username);
-            localStorage.setItem('session', result.user.token);
+            localStorage.setItem(USERNAME, result.user.username);
+            localStorage.setItem(TOKEN_NAME, result.user.token);
+            localStorage.setItem(USERID, result.user.id);
             this.loginForm.reset();
             this.formSubmitted = false;
             this.loading=false;
