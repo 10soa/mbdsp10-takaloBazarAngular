@@ -135,6 +135,7 @@ export class AccountComponent implements OnInit {
           this.loading=false;
           this.resetPwForm.reset();
         }, error => {
+          this.loading=false;
           this.resetPwForm.reset();
         });
       }
