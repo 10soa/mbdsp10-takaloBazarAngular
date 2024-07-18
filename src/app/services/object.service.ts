@@ -33,7 +33,7 @@ export class ObjectService {
   }
 
   getObject(id: number): Observable<Object> {
-    return this.http.get<Object>(`${this.apiUrl}/${id}`);
+    return this.http.get<Object>(`${this.apiUrl}/object/${id}`);
   }
 
   createObject(object: any): Observable<Object> {

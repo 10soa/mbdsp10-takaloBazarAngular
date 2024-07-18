@@ -8,6 +8,7 @@ import { ObjectsRoutingModule } from './objects-routing.module';
 import { ObjectSearchComponent } from './object-search/object-search.component';
 import { ObjectCardComponent } from './object-card/object-card.component';
 import { ObjectCardExpandedComponent } from './object-card-expanded/object-card-expanded.component';
+import { ObjectDetailComponent } from './object-detail/object-detail.component';
 
 
 
@@ -16,7 +17,8 @@ import { ObjectCardExpandedComponent } from './object-card-expanded/object-card-
     ObjectCreateComponent,
     ObjectSearchComponent,
     ObjectCardComponent,
-    ObjectCardExpandedComponent
+    ObjectCardExpandedComponent,
+    ObjectDetailComponent
   ],
   imports: [
     CommonModule,

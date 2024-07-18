@@ -1,0 +1,87 @@
+.object-details {
+    &__content {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      align-items: flex-start;
+    }
+  
+    &__image-box {
+      text-align: center;
+      position: relative;
+    }
+  
+    &__image {
+      width: 100%;
+      max-width: 500px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    }
+  
+    &__image img {
+      width: 100%;
+      border-radius: 10px;
+    }
+  
+    &__image.zoom:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+  
+    &__info {
+      background: #f9f5f0; /* Vous pouvez essayer d'autres couleurs comme #f2f2f2, #f5f5dc, ou #ececec */
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      flex: 1;
+    }
+  
+    &__title {
+      font-size: 1.8rem;
+      font-weight: bold;
+      margin-bottom: 15px;
+      text-align: center;
+      color: #bc8246;
+    }
+  
+    &__description {
+      font-size: 1.2rem;
+      margin-bottom: 20px;
+      color: #333;
+    }
+  
+    &__tag {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 0;
+      border-bottom: 1px solid #e0e0e0;
+  
+      &:last-child {
+        border-bottom: none;
+      }
+  
+      span {
+        font-size: 1rem;
+        color: #333;
+        display: flex;
+        align-items: center;
+      }
+  
+      a {
+        color: #bc8246;
+        text-decoration: none;
+  
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+  
+      i {
+        margin-right: 8px;
+        color: #bc8246;
+      }
+    }
+  }
+  
