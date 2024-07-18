@@ -5,12 +5,16 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'home/home-style-1',
+    redirectTo: '/home',
     pathMatch: 'full'
   },
+  // {
+  //   path: 'home',
+  //   loadChildren: () => import('./home/home.module').then(m => m.HomeModule)
+  // },
   {
     path: 'home',
-    loadChildren: () => import('./home/home.module').then(m => m.HomeModule)
+    loadChildren: () => import('./acceuilFO/acceuilFO.module').then(m => m.AcceuilFOModule)
   },
   {
     path: 'shop',
