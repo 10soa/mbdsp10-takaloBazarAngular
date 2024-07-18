@@ -29,6 +29,10 @@ const routes: Routes = [
     loadChildren: () => import('./object/objects.module').then(m => m.ObjectsModule)
   },
   {
+    path: 'exchange',
+    loadChildren: () => import('./exchange/exchanges.module').then(m => m.ExchangesModule)
+  },
+  {
     path:'auth',
     loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
   },
