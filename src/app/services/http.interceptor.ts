@@ -25,14 +25,10 @@ export class HttpConfigInterceptor implements HttpInterceptor {
 
     return next.handle(request).pipe(
       catchError((error: HttpErrorResponse) => {
-        let errorMsg = '';
-        if (error.error instanceof ErrorEvent) {
-          errorMsg = `Error: ${error.error.message}`;
-        } else {
-          errorMsg = `Error Code: ${error.status}\nMessage: ${error.message}`;
-        }
-        console.log(errorMsg);
-        return throwError(errorMsg);
+        // Log the error here if needed
+        console.error('HTTP error occurred:', error);
+        // Return the entire error object
+        return throwError(() => error);
       })
     );
   }
