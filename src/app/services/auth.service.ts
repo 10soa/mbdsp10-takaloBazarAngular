@@ -1,9 +1,9 @@
-// src/app/services/category.service.ts
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { Category } from '../models/category.model';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { Observable,throwError,  } from 'rxjs';
 import { API_URL } from '../constants/app.constants';
+import { catchError} from 'rxjs/operators';
+import { User } from '../models/user.model';
 
 @Injectable({
   providedIn: 'root'
@@ -21,4 +21,22 @@ export class AuthService {
   logout(): Observable<any> {
     return this.http.post<any>(this.authUrl+"/user/logout", {});
   }
+
+  register(user: User): Observable<any> {
+    return this.http.post(`${API_URL}/register`, user).pipe(
+      catchError((error: HttpErrorResponse) => {
+        return throwError(() => error);
+      })
+    );
+  }
+
+  private handleError<T>(operation = 'operation', result?: T) {
+    return (error: any): Observable<T> => {
+      console.error(`${operation} failed:`, error); // Log error to console
+
+      // Renvoyer l'erreur pour que le composant puisse la traiter
+      return throwError(() => error);
+    };
+  }
+
 }

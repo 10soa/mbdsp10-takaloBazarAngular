@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { FormControl, FormGroup,Validators } from '@angular/forms';
 import { AuthService} from 'src/app/services/auth.service';
-import { RouterLink } from '@angular/router';
+import { TOKEN_NAME } from '../../constants/app.constants';
 import { Router } from '@angular/router';
 
 @Component({
@@ -51,7 +51,7 @@ export class LoginComponent {
             const now = new Date();
             localStorage.setItem('date_expiry', (now.getTime() + 24 * 60 * 60 * 1000).toString());
             localStorage.setItem('username', result.user.username);
-            localStorage.setItem('session', result.user.token);
+            localStorage.setItem(TOKEN_NAME, result.user.token);
             this.loginForm.reset();
             this.formSubmitted = false;
             this.loading=false;
