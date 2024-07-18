@@ -1,0 +1,61 @@
+<app-header-one [transparent]="true" [white_bg]="true"></app-header-one>
+
+<main>
+  <app-breadcrumb-one title="Historique échange" subtitle="Historique échange"></app-breadcrumb-one>
+
+  <section class="cart-area pt-100 pb-100">
+    <div class="container">
+      <div class="mat-elevation-z8">
+        <div class="table-container">
+          <mat-table [dataSource]="exchangeHistory" class="mat-elevation-z8">
+
+            <!-- Proposer and Receiver IDs Column -->
+            <ng-container matColumnDef="proposer_receiver">
+              <mat-header-cell *matHeaderCellDef> Proposeur / Récepteur </mat-header-cell>
+              <mat-cell *matCellDef="let element">
+                <span [ngStyle]="{'color': getStatusColor(element.status)}">
+                  <mat-icon>arrow_back</mat-icon> {{ element.proposer_user_id }} / {{ element.receiver_user_id }}
+                </span>
+              </mat-cell>
+            </ng-container>
+
+            <!-- Status Column -->
+            <ng-container matColumnDef="status">
+              <mat-header-cell *matHeaderCellDef> Statut </mat-header-cell>
+              <mat-cell *matCellDef="let element">
+                <span [ngStyle]="{'color': getStatusColor(element.status)}">{{ element.status }}</span>
+              </mat-cell>
+            </ng-container>
+
+            <!-- Note Column -->
+            <ng-container matColumnDef="note">
+              <mat-header-cell *matHeaderCellDef> Note </mat-header-cell>
+              <mat-cell *matCellDef="let element"> {{ element.note }} </mat-cell>
+            </ng-container>
+
+            <!-- Created At Column -->
+            <ng-container matColumnDef="created_at">
+              <mat-header-cell *matHeaderCellDef> Date de création </mat-header-cell>
+              <mat-cell *matCellDef="let element"> {{ element.created_at | date }} </mat-cell>
+            </ng-container>
+
+            <!-- Action Column -->
+            <ng-container matColumnDef="action">
+              <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
+              <mat-cell *matCellDef="let element">
+                <!-- Add your action buttons here -->
+                <button mat-button color="primary">Voir</button>
+                <!-- Add more actions as needed -->
+              </mat-cell>
+            </ng-container>
+
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+          </mat-table>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<app-footer-one></app-footer-one>

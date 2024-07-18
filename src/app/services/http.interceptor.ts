@@ -8,10 +8,13 @@ import {
 } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { Router } from '@angular/router';
 import { TOKEN_NAME } from '../constants/app.constants';
 
 @Injectable()
 export class HttpConfigInterceptor implements HttpInterceptor {
+  constructor(private router: Router) { }
+
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const token = localStorage.getItem(TOKEN_NAME);
 
@@ -25,9 +28,10 @@ export class HttpConfigInterceptor implements HttpInterceptor {
 
     return next.handle(request).pipe(
       catchError((error: HttpErrorResponse) => {
-        // Log the error here if needed
+        if (error.status === 401 || error.status === 403) {
+          this.router.navigate(['/auth/login']);
+        }
         console.error('HTTP error occurred:', error);
-        // Return the entire error object
         return throwError(() => error);
       })
     );

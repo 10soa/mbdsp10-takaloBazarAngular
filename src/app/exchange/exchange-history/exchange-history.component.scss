@@ -1,0 +1,21 @@
+.table-container {
+  margin: 20px 0;
+}
+
+.mat-elevation-z8 {
+  padding: 16px;
+  border-radius: 4px;
+  background: white;
+}
+
+mat-table {
+  width: 100%;
+}
+
+mat-header-cell {
+  font-weight: bold;
+}
+
+mat-icon {
+  vertical-align: middle;
+}
