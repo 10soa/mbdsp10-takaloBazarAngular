@@ -1,18 +1,18 @@
-<app-header-one [transparent]="true" [white_bg]="true"></app-header-one>
+<!-- <app-header-one [transparent]="true" [white_bg]="true"></app-header-one> -->
 
-<main>
-  <app-breadcrumb-one title="Historique échange" subtitle="Historique échange"></app-breadcrumb-one>
+<!-- <main> -->
+  <!-- <app-breadcrumb-one title="Historique échange" subtitle="Historique échange"></app-breadcrumb-one> -->
 
-  <section class="cart-area pt-100 pb-100">
-    <div class="container">
+  <section class="cart-area">
+    <div class="">
       <div class="filter-container">
         <label for="statusFilter">Filtrer par statut:</label>
 
         <div class="filter-group">
           <select id="filter-category" [(ngModel)]="status" (change)="filterByStatus()" class="form-control">
             <option value="">Toute</option>
-            <option value="Accepted">Accepter</option>
-            <option value="Refused">Refuser</option>
+            <option value="Accepted">Accepté</option>
+            <option value="Refused">Refusé</option>
           </select>
         </div>
       </div>
@@ -84,6 +84,6 @@
       </div>
     </div>
   </section>
-</main>
+<!-- </main> -->
 
-<app-footer-one></app-footer-one>
+<!-- <app-footer-one></app-footer-one> -->

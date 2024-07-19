@@ -10,7 +10,6 @@ import { ExchangeHistoryComponent } from './exchange-history/exchange-history.co
 
 @NgModule({
   declarations: [
-    ExchangeHistoryComponent
   ],
   imports: [
     CommonModule,
