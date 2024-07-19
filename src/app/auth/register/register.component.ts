@@ -44,8 +44,8 @@ export class RegisterComponent {
 
   onSubmit() {
     this.formSubmitted = true;
-    this.loading = true;
     if (this.registerForm.valid) {
+      this.loading = true;
       console.log('register-form-value', this.registerForm.value);
       this.authService.register(this.registerForm.value).subscribe(
         (response) => {
