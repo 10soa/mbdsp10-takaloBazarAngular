@@ -40,8 +40,8 @@ export class ObjectService {
     return this.http.post<Object>(`${this.apiUrl}/objects`, object);
   }
 
-  updateObject(id: number, object: Object): Observable<Object> {
-    return this.http.put<Object>(`${this.apiUrl}/${id}`, object);
+  updateObject(id: number, object: any): Observable<Object> {
+    return this.http.put<Object>(`${this.apiUrl}/objects/${id}`, object);
   }
 
   deleteObject(id: number): Observable<void> {

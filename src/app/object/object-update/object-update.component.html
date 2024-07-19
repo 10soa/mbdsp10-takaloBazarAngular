@@ -1,0 +1,169 @@
+<app-header-one [transparent]="true" [white_bg]="true"></app-header-one>
+
+<main>
+  <app-breadcrumb-one
+    title="Modifier Objet"
+    subtitle="Modifier Objet"
+  ></app-breadcrumb-one>
+
+  <section class="cart-area pt-100 pb-100">
+    <div class="container">
+      <form
+        id="contact-form"
+        *ngIf="ready"
+        #objectForm="ngForm"
+        (ngSubmit)="updateObject(objectForm)"
+      >
+        <div class="row">
+          <div class="col-sm-6">
+            <!-- Nom de l'objet -->
+            <div class="row">
+              <div class="col-xl-6 col-lg-6">
+                <div
+                  class="contact__input mb-20"
+                  [ngClass]="{
+                    'has-error': objectForm.submitted && !name.valid
+                  }"
+                >
+                  <label>Nom <span class="required">*</span></label>
+                  <input
+                    placeholder="Nom de l'objet"
+                    id="name"
+                    [value]="object.name"
+                    [(ngModel)]="object.name"
+                    name="name"
+                    required
+                    #name="ngModel"
+                  />
+                  <div
+                    *ngIf="objectForm.submitted && !name.valid"
+                    class="error-message"
+                  >
+                    Nom est requis.
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Catégorie de l'objet -->
+            <div class="row">
+              <div class="col-xl-12">
+                <div
+                  class="contact__input mb-45"
+                  [ngClass]="{
+                    'has-error': objectForm.submitted && !category_id.valid
+                  }"
+                >
+                  <div class="product__modal-input size mb-20">
+                    <label>Categorie <i class="fas fa-star-of-life"></i></label>
+                    <select
+                      name="category_id"
+                      id="category_id"
+                      [(ngModel)]="object.category_id"
+                      required
+                      #category_id="ngModel"
+                    >
+                      <option
+                        *ngFor="let category of categories"
+                        [value]="category.id"
+                      >
+                        {{ category.name }}
+                      </option>
+                    </select>
+                    <div
+                      *ngIf="objectForm.submitted && !category_id.valid"
+                      class="error-message"
+                    >
+                      Categorie est requise.
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Description de l'objet -->
+            <div class="row">
+              <div class="col-xl-12">
+                <div
+                  class="contact__input mb-45"
+                  [ngClass]="{
+                    'has-error': objectForm.submitted && !description.valid
+                  }"
+                >
+                  <label>Description <span class="required">*</span></label>
+                  <textarea
+                    placeholder="Description de l'objet"
+                    cols="30"
+                    rows="10"
+                    id="description"
+                    [(ngModel)]="object.description"
+                    name="description"
+                    required
+                    #description="ngModel"
+                  ></textarea>
+                  <div
+                    *ngIf="objectForm.submitted && !description.valid"
+                    class="error-message"
+                  >
+                    Description est requise.
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row" *ngIf="error!==''">
+              <div class="col-xl-12">
+                <p  class="container_error">{{error}}</p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xl-12">
+                <div class="contact__submit">
+                  <button type="submit" class="os-btn os-btn-black">
+                    <span
+                      *ngIf="loading"
+                      class="spinner-border spinner-border-sm"
+                      role="status"
+                      aria-hidden="true"
+                    ></span>
+                    Modifier
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-sm-6">
+            <label for="fileInput" class="control-label"
+              >Image de l'objet</label
+            >
+            <div class="center">
+              <div class="image-upload-container" *ngIf="filePreview; else uploadPlaceholder">
+                <img class="uploaded-image" [src]="filePreview" alt="Uploaded Image" />
+                <div class="image-actions">
+                 <button type="button" class="delete-button" (click)="removeImage()"><i class="fas fa-times"></i></button>
+                </div>
+              </div>
+              <ng-template #uploadPlaceholder>
+                <div class="upload-placeholder" (click)="triggerFileInput()">
+                  <img  src="assets/img/icons/ss.svg" alt="Uploaded Image" />
+                  <p>Télécharger photo</p>
+                  <input type="file" #fileInput id="fileInput" hidden (change)="onFileSelected($event)" />
+                </div>
+              </ng-template>
+              <span *ngIf="imageError" class="text-danger">
+                {{imageError}}
+              </span>
+            </div>
+          </div>
+        </div>
+      </form>
+      <div *ngIf="!ready" class="spinner-loading">
+        <span
+          class="spinner-border spinner-border-sm"
+          role="status"
+          aria-hidden="true"
+        ></span>
+      </div>
+    </div>
+  </section>
+</main>
+
+<app-footer-one></app-footer-one>

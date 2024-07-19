@@ -9,6 +9,7 @@ import { ObjectSearchComponent } from './object-search/object-search.component';
 import { ObjectCardComponent } from './object-card/object-card.component';
 import { ObjectCardExpandedComponent } from './object-card-expanded/object-card-expanded.component';
 import { ObjectDetailComponent } from './object-detail/object-detail.component';
+import { ObjectUpdateComponent } from './object-update/object-update.component';
 
 
 
@@ -18,7 +19,8 @@ import { ObjectDetailComponent } from './object-detail/object-detail.component';
     ObjectSearchComponent,
     ObjectCardComponent,
     ObjectCardExpandedComponent,
-    ObjectDetailComponent
+    ObjectDetailComponent,
+    ObjectUpdateComponent
   ],
   imports: [
     CommonModule,

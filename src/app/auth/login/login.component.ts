@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { FormControl, FormGroup,Validators } from '@angular/forms';
 import { AuthService} from 'src/app/services/auth.service';
-import { RouterLink } from '@angular/router';
 import { Router } from '@angular/router';
 import { TOKEN_NAME,USERID,USERNAME } from 'src/app/constants/app.constants';
 @Component({

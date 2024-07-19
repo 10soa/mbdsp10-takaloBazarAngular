@@ -1,0 +1,99 @@
+<!-- header start -->
+<app-header-one></app-header-one>
+<!-- header end -->
+
+<main>
+
+<!-- hero slider start -->
+<section class="slider__area p-relative">
+  <div class="slider-active swiper-container" #heroSliderContainer>
+    <div class="swiper-wrapper">
+      <div *ngFor="let item of hero_slider_data" class="single-slider slider__height d-flex align-items-center swiper-slide" [style.backgroundImage]="'url(' + item.bgImg + ')'">
+          <div class="container">
+              <div class="row">
+                  <div class="col-xl-6 col-lg-6 col-md-8 col-sm-10 col-12">
+                      <div class="slider__content">
+                          <h2 [innerHTML]="item.title"></h2>
+                          <p>{{item.subtitle}}</p>
+                          <a routerLink="/shop" class="os-btn os-btn-2">Discover now</a>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+    </div>
+    <div class="tp-slider-dot tp-swiper-dot"></div>
+  </div>
+</section>
+
+<!-- category area start -->
+<!-- category area end -->
+
+<!-- product area start -->
+<section class="product__area pt-60 pb-100">
+  <div class="container">
+      <div class="row">
+          <div class="col-xl-12">
+              <div class="section__title-wrapper text-center mb-55">
+                  <div class="section__title mb-10">
+                      <h2>TOP 20</h2>
+                  </div>
+                  <div class="section__sub-title">
+                      <p>Découvrez les 20 objets les plus récents ajoutés sur notre site, prêts à être échangés avec des autres objets!</p>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div *ngIf="loading; else landingPage">
+        <p class="os-btn w-100">
+          Chargement des résultats ... <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+        </p>
+      </div>
+      <ng-template #landingPage>
+        <div class="product__slider">
+            <div class="row">
+              <div *ngFor="let item of objects" class="col-lg-3 col-md-4">
+                <div class="product__wrapper mb-60">
+                    <div class="product__thumb">
+                        <a [routerLink]="['/shop/cart', item.id]" class="w-img">
+                            <img [src]="item.image" alt="product-img" height="300px" width="250px">
+                            <img class="product__thumb-2" [src]="item.image" alt="product-img" width="250px" height="300px">
+                        </a>
+                        <div class="product__sale">
+                          <span class="new">récent</span>
+                        </div>
+                    </div>
+                    <div class="product__content p-relative">
+                        <div class="product__content-inner">
+                            <h4><a [routerLink]="['/shop/cart', item.id]" [innerHTML]="item.name"></a></h4>
+                            <div class="product__price transition-3">
+                                <span>Publié le : {{item.created_at | date:'yyyy/MM/dd'}}</span>
+                            </div>
+                        </div>
+                        <div class="add-cart p-absolute transition-3">
+                            <a routerLink="/shop/cart" class="cursor-pointer">
+                              Détail
+                            </a>
+                        </div>
+                    </div>
+                </div>    
+              </div>
+            </div>
+          </div>
+      </ng-template>
+
+      <div class="row">
+          <div class="col-xl-12">
+              <div class="product__load-btn text-center mt-25">
+                  <a (click)="voirPlus()" class="os-btn os-btn-3 cursor-pointer">Voir plus</a>
+              </div>
+          </div>
+      </div>
+  </div>
+</section>
+<!-- subscribe area end -->
+</main>
+
+<!-- footer start -->
+<app-footer-one></app-footer-one>
+<!-- footer end -->
