@@ -1,0 +1,62 @@
+<app-header-one [transparent]="true" [white_bg]="true"></app-header-one>
+
+<main>
+  <app-breadcrumb-one title="Fiche Objet" subtitle="Fiche Objet"></app-breadcrumb-one>
+
+  <section class="object-details pt-100 pb-100">
+    <div class="container">
+      <div class="row" *ngIf="object">
+        <div class="col-md-6">
+          <div class="object-details__image-box">
+            <div class="object-details__image zoom">
+              <img style="width: 100%;" [src]="object.image" alt="object-img">
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="object-details__info text-center">
+            <h4 class="object-details__title">{{object.name}}</h4>
+            <div class="object-details__description mb-30">
+              <p>{{object.description}}</p>
+            </div>
+
+            <div class="object-details__tag mb-25">
+              <span><i class="fas fa-info-circle"></i> Status:</span>
+              <span>{{object.status}}</span>
+            </div>
+
+            <div class="object-details__tag mb-25">
+              <span><i class="fas fa-calendar-alt"></i> Date de création:</span>
+              <span>{{object.created_at | date:'short'}}</span>
+            </div>
+
+            <div class="object-details__tag mb-25">
+              <span><i class="fas fa-tags"></i> Catégorie:</span>
+              <span><a class="cursor-pointer">{{object.category?.name}}</a></span>
+            </div>
+
+            <div class="object-details__tag mb-25">
+              <span><i class="fas fa-user"></i> Utilisateur:</span>
+              <span><a class="cursor-pointer">{{object.user?.username}}</a></span>
+            </div>
+
+            <button *ngIf="isOwner" class="btn btn-custom mt-3">Retirer</button>
+            <button *ngIf="isOwner" class="btn btn-custom mt-3">Modifier </button>
+            <button *ngIf="isConnected" class="btn btn-custom mt-3">Signaler</button>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="!object" class="d-flex justify-content-center align-items-center" style="height: 300px;">
+        <div class="text-center">
+          <div class="spinner-border" role="status">
+            <span class="sr-only">Loading...</span>
+          </div>
+          <p>Loading...</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+<app-footer-one></app-footer-one>
