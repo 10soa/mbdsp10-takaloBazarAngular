@@ -83,5 +83,21 @@
         color: #bc8246;
       }
     }
+    .btn-custom {
+        background-color: #bc8246;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        font-size: 16px;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+        margin-right: 10px;
+      }
+      
+      .btn-custom:hover {
+        background-color: #a96e3f;
+        cursor: pointer;
+      }
+                  
   }
   
