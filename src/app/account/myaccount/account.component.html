@@ -18,7 +18,8 @@
               <div class="profile__basic d-md-flex align-items-center">
                 <div class="profile__basic-content">
                   <h3 class="profile__basic-title">
-                    Chargement de vos informations... <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                    Chargement de vos informations... <span class="spinner-border spinner-border-sm" role="status"
+                      aria-hidden="true"></span>
                   </h3>
                 </div>
               </div>
@@ -40,7 +41,7 @@
                 </div>
                 <div class="profile__basic-content">
                   <h3 class="profile__basic-title">
-                    Bienvenue à nouveau, <span>{{username}}</span> ! 
+                    Bienvenue à nouveau, <span>{{username}}</span> !
                   </h3>
                 </div>
               </div>
@@ -63,7 +64,7 @@
       </div>
     </section>
     <!-- profile area end -->
-  
+
     <!-- profile menu area start -->
     <section class="profile__menu pb-70 grey-bg">
       <div class="container">
@@ -73,14 +74,22 @@
               <h3 class="profile__menu-title"><i class="fa fa-list-alt"></i>Votre Menu</h3>
               <div class="profile__menu-tab">
                 <div class="nav nav-tabs flex-column justify-content-start text-start" id="nav-tab" role="tablist">
-                  <button class="nav-link active" id="nav-account-tab" data-bs-toggle="tab" data-bs-target="#nav-account" type="button" role="tab" aria-controls="nav-account" aria-selected="true"> <i class="fa fa-user"></i> Mon compte </button>
-  
-                  <button class="nav-link" id="nav-order-tab" data-bs-toggle="tab" data-bs-target="#nav-order" type="button" role="tab" aria-controls="nav-order" aria-selected="false"><i class="fa fa-file"></i> Historiques des échanges</button>
-  
-                  <button class="nav-link" id="nav-password-tab" data-bs-toggle="tab" data-bs-target="#nav-edit" type="button" role="tab" aria-controls="nav-edit" aria-selected="false"><i class ="fa fa-lock"></i>Modifier mon compte</button>
-  
-                  <button class="nav-link" id="nav-password-tab" data-bs-toggle="tab" data-bs-target="#nav-password" type="button" role="tab" aria-controls="nav-password" aria-selected="false"><i class="fa fa-lock"></i>Changer Mot de passe</button>
-  
+                  <button class="nav-link active" id="nav-account-tab" data-bs-toggle="tab"
+                    data-bs-target="#nav-account" type="button" role="tab" aria-controls="nav-account"
+                    aria-selected="true"> <i class="fa fa-user"></i> Mon compte </button>
+
+                  <button class="nav-link" id="nav-order-tab" data-bs-toggle="tab" data-bs-target="#nav-order"
+                    type="button" role="tab" aria-controls="nav-order" aria-selected="false"><i class="fa fa-file"></i>
+                    Historiques des échanges</button>
+
+                  <button class="nav-link" id="nav-password-tab" data-bs-toggle="tab" data-bs-target="#nav-edit"
+                    type="button" role="tab" aria-controls="nav-edit" aria-selected="false"><i
+                      class="fa fa-lock"></i>Modifier mon compte</button>
+
+                  <button class="nav-link" id="nav-password-tab" data-bs-toggle="tab" data-bs-target="#nav-password"
+                    type="button" role="tab" aria-controls="nav-password" aria-selected="false"><i
+                      class="fa fa-lock"></i>Changer Mot de passe</button>
+
                   <button class="nav-link" (click)="logout()"><i class="fa fa-sign-out"></i> Déconnexion</button>
                 </div>
               </div>
@@ -89,103 +98,75 @@
           <div class="col-xxl-8 col-md-8">
             <div class="profile__menu-right">
               <div class="tab-content" id="nav-tabContent">
-                <div class="tab-pane fade show active" id="nav-account" role="tabpanel" aria-labelledby="nav-account-tab">
+                <div class="tab-pane fade show active" id="nav-account" role="tabpanel"
+                  aria-labelledby="nav-account-tab">
                   <div class="profile__info">
                     <div class="profile__info-top d-flex justify-content-between align-items-center">
                       <h3 class="profile__info-title">Information sur mon profil</h3>
                     </div>
-  
+
                     <div class="profile__info-wrapper white-bg">
                       <div class="profile__info-item">
-                        <p>Name</p>
-                        <h4>John Smith</h4>
+                        <p>Pseudo</p>
+                        <h4>{{dataUser.username}}</h4>
                       </div>
                       <div class="profile__info-item">
-                        <p>Email</p>
+                        <p>Adresse Email</p>
                         <h4>
-                          <a href="mailt:outstock@hotmail.com" class="__cf_email__" data-cfemail="94fdfaf2fbd4f1f0e1fff1e6baf7fbf9">outstock@hotmail.com</a>
+                          <a href="mailt:{{dataUser.email}}" class="__cf_email__">{{dataUser.email}}</a>
                         </h4>
                       </div>
                       <div class="profile__info-item">
-                        <p>Phone</p>
-                        <h4>(325) 463-5693</h4>
+                        <p>Nom</p>
+                        <h4>{{dataUser.last_name}}</h4>
                       </div>
                       <div class="profile__info-item">
-                        <p>Address</p>
-                        <h4>Abingdon, Maryland(MD), 21009</h4>
+                        <p>Prénom</p>
+                        <h4>{{dataUser.first_name}}</h4>
+                      </div>
+                      <div class="profile__info-item">
+                        <p>Genre (H/F)</p>
+                        <h4>{{ dataUser.gender === 'Male' ? 'Masculin' : 'Féminin' }}</h4>
                       </div>
                     </div>
                   </div>
                 </div>
                 <div class="tab-pane fade" id="nav-order" role="tabpanel" aria-labelledby="nav-order-tab">
                   <div class="order__info">
+
                     <div class="order__info-top d-flex justify-content-between align-items-center">
-                      <h3 class="order__info-title">My Orders</h3>
-                      <button type="button" class="order__info-btn">
-                        <i class="fa-regular fa-trash-can"></i> Clear
-                      </button>
+                      <h3 class="order__info-title">Mon historique</h3>
                     </div>
-  
-                    <div class="order__list white-bg table-responsive">
-                      <table class="table">
-                        <thead>
-                          <tr>
-                            <th scope="col">Order ID</th>
-                            <th scope="col">Name</th>
-                            <th scope="col">Price</th>
-                            <th scope="col">Details</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <td class="order__id">#3520</td>
-                            <td><a [routerLink]="['/shop/shop-details']" class="order__title">University seminar series global.</a>
-                            </td>
-                            <td>$144.00</td>
-                            <td><a [routerLink]="['/shop/shop-details']" class="order__view-btn">View</a></td>
-                          </tr>
-                          <tr>
-                            <td class="order__id">#2441</td>
-                            <td><a [routerLink]="['/shop/shop-details']" class="order__title">Web coding and apache basics</a></td>
-                            <td>$59.54</td>
-                            <td><a [routerLink]="['/shop/shop-details']" class="order__view-btn">View</a></td>
-                          </tr>
-                          <tr>
-                            <td class="order__id">#2357</td>
-                            <td><a [routerLink]="['/shop/shop-details']" class="order__title">Economics historical development</a>
-                            </td>
-                            <td>$89.90</td>
-                            <td><a [routerLink]="['/shop/shop-details']" class="order__view-btn">View</a></td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </div>
+                    <app-exchange-history></app-exchange-history>
                   </div>
                 </div>
-                  <div class="tab-pane fade" id="nav-password" role="tabpanel" aria-labelledby="nav-password-tab">
-                    <div class="password__change">
-                      <div class="password__change-top">
-                        <h3 class="password__change-title">Modifier votre mot de passe</h3>
-                      </div>
-                      <div *ngIf="loading; else formResetPW">
-                        <p class="os-btn w-100">
-                          <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-                        </p>
-                      </div>
-                      <ng-template #formResetPW>
+                <div class="tab-pane fade" id="nav-password" role="tabpanel" aria-labelledby="nav-password-tab">
+                  <div class="password__change">
+                    <div class="password__change-top">
+                      <h3 class="password__change-title">Modifier votre mot de passe</h3>
+                    </div>
+                    <div *ngIf="loading; else formResetPW">
+                      <p class="os-btn w-100">
+                        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                      </p>
+                    </div>
+                    <ng-template #formResetPW>
                       <div class="password__form white-bg">
                         <form [formGroup]="resetPwForm" (ngSubmit)="onSubmitRestPassword()">
                           <div class="password__input">
                             <p>Ancien Mot de passe</p>
-                            <input type="password" formControlName="oldPassword" placeholder="Entrer l'ancien mot de passe">
+                            <input type="password" formControlName="oldPassword"
+                              placeholder="Entrer l'ancien mot de passe">
                           </div>
                           <div class="password__input">
                             <p>Nouveau Mot de passe</p>
-                            <input type="password" formControlName="password" placeholder="Entrer le nouveau mot de passe">
+                            <input type="password" formControlName="password"
+                              placeholder="Entrer le nouveau mot de passe">
                           </div>
                           <div class="password__input">
                             <p>Confirmation nouveau Mot de passe</p>
-                            <input type="password" formControlName="confirmPassword" placeholder="Confirmer le nouveau mot de passe">
+                            <input type="password" formControlName="confirmPassword"
+                              placeholder="Confirmer le nouveau mot de passe">
                           </div>
                           <div class="password__input">
                             <button type="submit" class="os-btn os-btn-black">Enregister</button>
@@ -193,10 +174,10 @@
                         </form>
                       </div>
                     </ng-template>
-                    </div>
                   </div>
-                
-                
+                </div>
+
+
                 <div class="tab-pane fade" id="nav-edit" role="tabpanel" aria-labelledby="nav-edit-tab">
                   <div class="password__change">
                     <div class="password__change-top">
@@ -245,7 +226,8 @@
                           <br>
                           <div *ngIf="profilePictureBase64" class="preview">
                             <p>Prévisualisation de la photo de profil :</p>
-                            <img [src]="profilePictureBase64" alt="Profile Picture" style="max-width: 100px; max-height: 100px;">
+                            <img [src]="profilePictureBase64" alt="Profile Picture"
+                              style="max-width: 100px; max-height: 100px;">
                           </div>
                           <br>
                           <div class="password__input">
@@ -256,7 +238,7 @@
                     </ng-template>
                   </div>
                 </div>
-                
+
               </div>
             </div>
           </div>
@@ -265,7 +247,7 @@
     </section>
   </ng-template>
 
-  
+
   <!-- profile menu area end -->
 
 </main>

@@ -5,6 +5,7 @@ import { AccountComponent } from './myaccount/account.component';
 import { AccountRoutingModule } from './account-routing.module';
 import { SharedModule } from '../shared/shared.module';
 import { RouterLink } from '@angular/router';
+import { ExchangeHistoryComponent } from '../exchange/exchange-history/exchange-history.component';
 @NgModule({
   declarations: [
     AccountComponent
@@ -15,7 +16,8 @@ import { RouterLink } from '@angular/router';
     FormsModule,
     ReactiveFormsModule,
     SharedModule,
-    RouterLink
+    RouterLink,
+    ExchangeHistoryComponent,
   ],
 })
 export class AccountModule { }
