@@ -4,7 +4,7 @@ import { FormControl, FormGroup,Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
-import { TOKEN_NAME } from 'src/app/constants/app.constants';
+import { TOKEN_NAME, USERID, USERNAME } from 'src/app/constants/app.constants';
 
 @Component({
   selector: 'app-register',
@@ -51,8 +51,9 @@ export class RegisterComponent {
         (response) => {
           const now = new Date();
           localStorage.setItem('date_expiry', (now.getTime() + 24 * 60 * 60 * 1000).toString());
-          localStorage.setItem('username', response.username);
+          localStorage.setItem(USERNAME, response.username);
           localStorage.setItem(TOKEN_NAME, response.token);
+          localStorage.setItem(USERID, response.id);
           this.toastr.success('Success', 'Utilisateur créé avec succès');
           console.log('Utilisateur créé avec succès', response);
           this.loading = false;
