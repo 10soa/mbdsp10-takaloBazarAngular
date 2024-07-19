@@ -5,13 +5,15 @@
 
 
 .basic-login {
-    padding: 90px;
+    padding: 50px;
     border: 2px solid #eaedff;
+    border-radius: 20px;
   }
 
   @media only screen and (min-width: 992px) and (max-width: 1200px) {
     .basic-login {
       padding: 50px;
+      border-radius: 0px;
     }
   }
 
@@ -37,12 +39,32 @@
     border: 2px solid #eaedff;
     color: #6f7172;
     padding: 0 20px;
+    border-radius: 8px;
     // margin-bottom: 20px;
   }
   .basic-login input::placeholder,
   .basic-login input::-moz-placeholder {
     color: #6f7172;
   }
+
+  .basic-login select {
+    width: 100%;
+    height: 60px;
+    border: 2px solid #eaedff;
+    color: #6f7172;
+    padding: 0 20px;
+    border-radius: 8px;
+    appearance: none; 
+    background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAAZCAYAAADE6YVjAAAACXBIWXMAAAWJAAAFiQFtaJ36AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAADQSURBVHgB7ZK7CsIwFIZPUPC++zw6ipdV0dHn0d3HcC32UToV0iStk4tYf0+EFgpS2zqaD0Ju5+QjJyFyOBwO0hojaXDUCeZlcVJjoWIclMKQ6mIMVpwMbg+ZYPNRwOt238aZK5ZUlyBAV8fwMlFksKXiDXIB3/YCoENNCEP0o6JoZ9f50HUmUAl8KTEoO0dUEbW7dObACU9TCDoJ0J7HLc72n3eaj8fi9pPEwqXoqZhFgqZ5IgvSCoJaWBGXy8ve4FuJGvP+DBoz25PD8T+8AIlto3JdmJ7UAAAAAElFTkSuQmCC') no-repeat right 20px center; /* Adds a custom arrow */
+    background-color: #ffffff;
+  }
+  
+  .basic-login select::placeholder,
+  .basic-login select::-moz-placeholder {
+    color: #6f7172;
+  }
+
+  
 
   .basic-login label {
     color: #222;
@@ -95,6 +117,10 @@
 
   .forgot-login a:hover {
     color: $theme-color;
+  }
+
+  .basic-login .os-btn{
+    border-radius: 8px;
   }
 
   @media (max-width: 767px) {
