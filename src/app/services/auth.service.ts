@@ -4,6 +4,7 @@ import { Observable,throwError,  } from 'rxjs';
 import { API_URL } from '../constants/app.constants';
 import { catchError} from 'rxjs/operators';
 import { User } from '../models/user.model';
+import { TOKEN_NAME } from '../constants/app.constants';
 
 @Injectable({
   providedIn: 'root'
@@ -37,6 +38,10 @@ export class AuthService {
       // Renvoyer l'erreur pour que le composant puisse la traiter
       return throwError(() => error);
     };
+  }
+
+  isLoggedIn(): boolean {
+    return !!localStorage.getItem(TOKEN_NAME);
   }
 
 }

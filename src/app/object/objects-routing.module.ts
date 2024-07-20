@@ -3,12 +3,14 @@ import { RouterModule, Routes } from '@angular/router';
 import { ObjectCreateComponent } from './object-create/object-create.component';
 import { ObjectSearchComponent } from './object-search/object-search.component';
 import { ObjectUpdateComponent } from './object-update/object-update.component';
+import { AuthGuard } from '../auth.guard';
 
 const routes: Routes = [
   {
     path: 'new',
     component: ObjectCreateComponent,
     title: 'Create Object',
+    canActivate: [AuthGuard]
   },
   {
     path: 'search',
@@ -17,7 +19,8 @@ const routes: Routes = [
   },{
     path: 'update/:objectId',
     component: ObjectUpdateComponent,
-    title: 'Modifier objet',
+    title: 'Modifier objet', 
+    canActivate: [AuthGuard]
   },
 ];
 

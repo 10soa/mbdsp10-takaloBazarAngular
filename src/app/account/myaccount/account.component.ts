@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { TOKEN_NAME, USERID, USERNAME } from 'src/app/constants/app.constants';
+import { USERID, USERNAME } from 'src/app/constants/app.constants';
 import { UserService } from 'src/app/services/user.service';
 import { User } from 'src/app/models/user.model';
 import { AuthService } from 'src/app/services/auth.service';
