@@ -1,0 +1,66 @@
+<app-header-one [transparent]="true" [white_bg]="true"></app-header-one>
+
+<main>
+  <app-breadcrumb-one
+    title="Mes échanges en cours"
+    subtitle="Echanges en cours"
+  ></app-breadcrumb-one>
+  <section class="cart-area pt-100 pb-100">
+    <div class="container" *ngIf="!loading">
+      <div *ngIf="myExchange.length === 0" class="text-center pt-50">
+        <h3>Aucun échange en cours actuellement.</h3>
+        <a routerLink="/objects" class="os-btn os-btn-black"
+          >Découvrez plus d'options.</a
+        >
+      </div>
+
+      <div *ngIf="myExchange.length > 0" class="row">
+        <div class="col-12">
+          <div class="table-content table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th class="product-thumbnail">Proposeur</th>
+                  <th class="cart-product-name">Receveur</th>
+                  <th class="product-price">Date</th>
+                  <th class="product-price"></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of myExchange">
+                  <td class="product-name">{{ item.proposer_user_id.toString() == userId ? "Moi" : item.proposer.username}}</td>
+                  <td class="product-name">{{ item.receiver_user_id.toString() == userId ? "Moi" : item.receiver.username}}</td>
+                  <td class="product-name">{{item.created_at | date: 'dd/MM/yyyy'}}</td>
+                  <td class="product-remove">
+                    <a routerLink="/exchange/{{item.id}}" class="cursor-pointer">
+                       <i class="fa fa-info"></i> 
+                    </a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="row">
+            <div class="col-md-5 ml-auto">
+              <div class="cart-page-total">
+                <h2>Nombre total d'échanges en cours:</h2>
+                <ul class="mb-20">
+                  <li>
+                    Total <span>{{ myExchange.length }}</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container" *ngIf="loading">
+      <div class="spinner-loading">
+        <i class="fas fa-spinner fa-spin fa-3x"></i>
+      </div>
+    </div>
+  </section>
+</main>
+
+<app-footer-one></app-footer-one>

@@ -6,11 +6,13 @@ import { MatTableModule } from '@angular/material/table';
 import { SharedModule } from '../shared/shared.module';
 import { ExchangeRoutingModule } from './exchanges-routing.module';
 import { ExchangeHistoryComponent } from './exchange-history/exchange-history.component';
+import { ExchangeInProgressComponent } from './exchange-in-progress/exchange-in-progress.component';
 
 
 @NgModule({
   declarations: [
-    ExchangeHistoryComponent
+    ExchangeHistoryComponent,
+    ExchangeInProgressComponent
   ],
   imports: [
     CommonModule,

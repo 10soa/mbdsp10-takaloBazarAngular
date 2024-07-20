@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { CartService } from 'src/app/shared/services/cart.service';
+import { Component, Input } from '@angular/core';
+import { USERID } from 'src/app/constants/app.constants';
 
 @Component({
   selector: 'app-mini-cart',
@@ -7,5 +7,7 @@ import { CartService } from 'src/app/shared/services/cart.service';
   styleUrls: ['./mini-cart.component.scss']
 })
 export class MiniCartComponent {
-  constructor(public cartService: CartService) { }
+  userId = localStorage.getItem(USERID);
+  @Input() exchangeItems: any[] = [];
+  constructor() { }
 }

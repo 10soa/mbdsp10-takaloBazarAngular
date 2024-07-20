@@ -37,10 +37,10 @@
                 </li>
                 <li>
                   <a class="cart cursor-pointer">
-                    <i class="ion-bag"></i> Cart <span>({{cartService.totalPriceQuantity().quantity}})</span>
+                    <i class="ion-android-sync"></i> Echanges<span>({{exchangesService.getMyExchange().length}})</span>
                   </a>
                   <!-- mini cart start -->
-                  <app-mini-cart></app-mini-cart>
+                  <app-mini-cart [exchangeItems]="exchangesService.getMyExchange()"></app-mini-cart>
                   <!-- mini cart end -->
                 </li>
                 <li> <a class="cursor-pointer"><i class="far fa-bars"></i></a>
