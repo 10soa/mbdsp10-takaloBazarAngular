@@ -9,6 +9,8 @@ import { API_URL } from '../constants/app.constants';
 export class ExchangesService {
 
   private apiUrl = API_URL;
+  private myExchange: any[] = [];
+  private dataFetched: boolean = false;
 
   constructor(private http: HttpClient) { }
 
@@ -37,6 +39,34 @@ export class ExchangesService {
       .set('status', status);
 
     return this.http.get(`${this.apiUrl}/exchange/history/${userId}`, { params });
+  }
+
+  myCurrentExchange(): Observable<any> {
+    return this.http.get(`${this.apiUrl}/exchanges/myCurrents`);
+  }
+
+  fetchCurrentExchange()  {
+    if (this.dataFetched) {
+    }
+    else{
+      this.myCurrentExchange().subscribe(
+        (data: any) => {
+          console.log('Exchange History:', data);
+          this.myExchange = data.data;
+        },
+        (error) => {
+          console.error('Error fetching exchange history:', error);
+        }
+      );
+    }
+  }
+
+  getMyExchange() : any[] {
+    return this.myExchange;
+  }
+
+  getDataFetched() : boolean {
+    return this.dataFetched;
   }
 
 }

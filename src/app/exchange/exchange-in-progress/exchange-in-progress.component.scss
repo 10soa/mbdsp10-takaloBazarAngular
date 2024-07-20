@@ -1,0 +1,124 @@
+.table-content {
+  background: #fff;
+  border: 1px solid #e6e6e6;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+.table-content table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table-content th, .table-content td {
+  padding: 15px;
+  text-align: left;
+  font-size: 14px; 
+}
+
+.table-content th {
+  background-color: #f9f9f9;
+  color: #333;
+  font-weight: 600;
+  border-bottom: 2px solid #e6e6e6; /* Ajout de la bordure pour l'en-tête */
+}
+
+.table-content tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.table-content tr:hover {
+  background-color: #e9e9e9;
+}
+
+.table-content td {
+  border-top: 1px solid #e6e6e6;
+}
+
+.table-content .product-remove a {
+  color: #bc8246;
+  text-decoration: none;
+  font-size: 15px;
+  text-align: center;
+}
+
+td.product-remove  {
+  text-align: center !important;
+}
+
+.table-content .product-remove a:hover {
+  color: #8a8f6a;
+}
+
+.spinner-loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+}
+
+.spinner-loading i {
+  color:#bc8246;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-center h3 {
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.text-center .os-btn {
+  padding: 10px 20px;
+  background-color:#bc8246;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 4px;
+}
+
+.text-center .os-btn:hover {
+  background-color: #8a8f6a;
+}
+
+.cart-page-total {
+  margin-top: 30px;
+  background: #fff;
+  border: 1px solid #e6e6e6;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.cart-page-total h2 {
+  font-size: 18px; 
+  color: #333;
+}
+
+.cart-page-total ul {
+  list-style: none;
+  padding: 0;
+}
+
+.cart-page-total li {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-top: 1px solid #e6e6e6;
+}
+
+.cart-page-total li:first-child {
+  border-top: none;
+}
+
+.cart-page-total li span {
+  font-weight: 600;
+  color: #bc8246;
+}
+
+.cart-page-total > ul {
+  border: none;
+}

@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
+import { AuthGuard } from './auth.guard';
 
 const routes: Routes = [
   {
@@ -30,7 +31,8 @@ const routes: Routes = [
   },
   {
     path: 'exchange',
-    loadChildren: () => import('./exchange/exchanges.module').then(m => m.ExchangesModule)
+    loadChildren: () => import('./exchange/exchanges.module').then(m => m.ExchangesModule),
+    canActivate: [AuthGuard]
   },
   {
     path:'auth',
@@ -38,7 +40,8 @@ const routes: Routes = [
   },
   {
     path:'account',
-    loadChildren: () => import('./account/account.module').then(m => m.AccountModule)
+    loadChildren: () => import('./account/account.module').then(m => m.AccountModule),
+    canActivate: [AuthGuard]
   },
   {
     path: '**',
