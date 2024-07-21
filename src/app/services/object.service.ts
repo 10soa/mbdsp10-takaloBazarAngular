@@ -57,4 +57,8 @@ export class ObjectService {
   deleteObject(id: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
+
+  removeObject(objectId: number): Observable<any> {
+    return this.http.patch<any>(`${this.apiUrl}/object/${objectId}/remove`, {});
+  }
 }
