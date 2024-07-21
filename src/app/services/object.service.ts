@@ -13,6 +13,16 @@ export class ObjectService {
 
   constructor(private http: HttpClient) { }
 
+  getUserObjects(params: any): Observable<any> {
+    let httpParams = new HttpParams();
+    for (const key in params) {
+      if (params[key] !== undefined && params[key] !== null) {
+        httpParams = httpParams.append(key, params[key]);
+      }
+    }
+    return this.http.get<any>(`${this.apiUrl}/user/${params.user_id}/objects`, { params: httpParams });
+  }
+
   getObjects(pageNo: number, pageSize: number, sortBy: string, filters: any): Observable<{ objects: Object[], totalPages: number, currentPage: number }> {
     let params = new HttpParams()
       .set('page', pageNo.toString())
