@@ -45,7 +45,7 @@ export class ExchangeAddComponent implements OnInit {
       this.exchangesService.proposerExchange(body).subscribe(
         (data: any) => {
           this.loading = false;
-          this.router.navigate([`/exchange/in-progress`]);
+          this.router.navigate([`/exchange/${data.exchange.id}`]);
         },
         (error) => {
           console.error('Error updating object:', error.headers);
