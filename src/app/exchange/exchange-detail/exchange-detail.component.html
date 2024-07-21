@@ -3,27 +3,113 @@
 <main>
   <app-breadcrumb-one title="Fiche échange" subtitle="Fiche échange"></app-breadcrumb-one>
 
-  <section class="shop__area pt-100 pb-100">
+  <div *ngIf="loading">
+    <section class="profile__area pt-120 pb-50 grey-bg">
+      <div class="container">
+        <div class="profile__basic-inner pb-20 bg-white">
+          <div class="row align-items-center">
+            <div class="col-xxl-6 col-md-6">
+              <div class="profile__basic d-md-flex align-items-center">
+                <div class="profile__basic-content">
+                  <h3 class="profile__basic-title">
+                    Chargement des informations de l'échange... <span class="spinner-border spinner-border-sm"
+                      role="status" aria-hidden="true"></span>
+                  </h3>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <section *ngIf="!loading" class="shop__area pt-100 pb-100">
     <div class="container">
       <div class="card">
         <div class="card-header" id="headingOne">
-          <h5 class="mb-0 align-items-right" style="text-align: right;" *ngIf="!closed">
-            <button class="os-btn os-btn-black ml-10 mb-10 button">
-              <i class="fa fa-thumbs-up"></i>
-              Accepter
-            </button>
-            <button class="os-btn os-btn-secondary ml-10 button cancel-filter">
-              <i class="fa fa-ban"></i>
-              Refuser
-            </button>
-          </h5>
-          <h5 class="mb-0 align-items-right" style="text-align: right;" *ngIf="closed">
-            Echange répondu
-          </h5>
+          <div class="row align-items-center">
+            <div class="col-4 status">
+              <strong class="status-label">Statut: </strong> {{ getStatusLabel(exchange.status) }} ({{
+              exchange.updated_at | date: 'dd/MM/yyyy' }})
+            </div>
+            <div class="col-8">
+              <h5 class="mb-0 align-items-right" style="text-align: right;" *ngIf="!closed">
+                <button class="os-btn os-btn-black ml-10 mb-10 button">
+                  <i class="fa fa-thumbs-up"></i>
+                  Accepter
+                </button>
+                <button class="os-btn os-btn-secondary ml-10 button cancel-filter">
+                  <i class="fa fa-ban"></i>
+                  Refuser
+                </button>
+              </h5>
+            </div>
+          </div>
         </div>
         <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-          <div class="card-body">
-            Exchange Fiche
+          <div class="card-body pt-4">
+            <div class="row">
+              <div class="col-md-4 text-center">
+                <img [src]="exchange.proposer?.profile_picture" alt="Proposer Image" class="img-circle">
+                <br>
+                <a [routerLink]="['/account', exchange.proposer_user_id]">{{ exchange.proposer.username }}</a>
+              </div>
+              <div class="col-md-4 center">
+                <i class="fa fa-arrow-right fa-2x"></i>
+              </div>
+              <div class="col-md-4 text-center">
+                <img [src]="exchange.receiver?.profile_picture" alt="Receiver Image" class="img-circle">
+                <br>
+                <a [routerLink]="['/account', exchange.receiver_user_id]">{{ exchange.receiver.username }}</a>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-6">
+                <div class="order__info-top d-flex justify-content-between align-items-center">
+                  <h3 class="order__info-title">Proposition</h3>
+                </div>
+                <div class="row p-5 py-1">
+                  <div *ngFor="let item of propositionObjects" class="col-5">
+                    <app-object-card [object]="item.object"></app-object-card>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-6">
+                <div class="order__info-top d-flex justify-content-between align-items-center">
+                  <h3 class="order__info-title">Contre</h3>
+                </div>
+                <div class="row p-5 py-1">
+                  <div *ngFor="let item of receiverObjects" class="col-5">
+                    <app-object-card [object]="item.object"></app-object-card>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <hr>
+
+            <div class="order__info-top d-flex justify-content-between align-items-center" style="margin: 0;">
+              <h3 class="order__info-title"><i class="fa fa-info"></i> Détails</h3>
+            </div>
+            <div class="profile__menu-tab">
+              <div class="profile__info-wrapper white-bg">
+                <div class="profile__info-item">
+                  <p>Depuis</p>
+                  <h4>{{exchange?.created_at | date: 'dd/MM/yyyy'}}</h4>
+                </div>
+                <div class="profile__info-item">
+                  <p>Lieu de rendez vous</p>
+                  <h4>{{exchange?.meeting_place}}</h4>
+                </div>
+                <div class="profile__info-item">
+                  <p>Note</p>
+                  <h4>{{exchange?.note}}</h4>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
