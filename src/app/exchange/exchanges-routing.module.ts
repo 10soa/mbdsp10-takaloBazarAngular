@@ -14,7 +14,7 @@ const routes: Routes = [
   {
     path: ':id',
     component: ExchangeDetailComponent,
-    title: 'Create Object',
+    title: 'Echange',
   },
   {
     path: 'in-progress',
