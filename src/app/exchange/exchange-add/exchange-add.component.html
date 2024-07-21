@@ -1,0 +1,122 @@
+<app-header-one [transparent]="true" [white_bg]="true"></app-header-one>
+
+<main>
+  <app-breadcrumb-one
+    title="Proposer un échange"
+    subtitle="Proposer un échange"
+  ></app-breadcrumb-one>
+  <section class="cart-area pt-100 pb-100">
+    <div class="row">
+      <div class="col-xl-12">
+        <label for="fileInput" class="control-label"
+          >Objet(s) à échanger (propriétaire : {{ rcvUsername }})<span
+            class="required"
+            >*</span
+          ></label
+        >
+        <div class="center">
+          <div
+            class="image-upload-container"
+            *ngFor="let item of recevedItem; let i = index"
+          >
+            <img
+              class="uploaded-image"
+              [src]="item.image"
+              alt="Uploaded Image"
+            />
+            <p>{{ item.name }}</p>
+            <div class="image-actions">
+              <button
+                type="button"
+                class="delete-button"
+                (click)="deleteRecevedItem(i)"
+              >
+                <i class="fas fa-times"></i>
+              </button>
+            </div>
+          </div>
+
+          <div
+            class="upload-placeholder"
+            (click)="addObject(rcvUserId, 'recever')"
+          >
+            <img
+              class="img-plus"
+              src="assets/img/icons/Plus.svg"
+              alt="Uploaded Image"
+            />
+            <p>Ajouter objet</p>
+            <!-- <input type="file" #fileInput id="fileInput" hidden (change)="onFileSelected($event)" /> -->
+          </div>
+          <span *ngIf="receiveError" class="text-danger">
+            {{ receiveError }}
+          </span>
+        </div>
+        <p class="container_error" *ngIf="error1!==''">{{ error1 }}</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xl-12">
+        <label for="fileInput" class="control-label"
+          >Objet(s) proposé(s) <span class="required">*</span></label
+        >
+        <div class="center">
+          <div
+            class="image-upload-container"
+            *ngFor="let item of proposedItem; let i = index"
+          >
+            <img
+              class="uploaded-image"
+              [src]="item.image"
+              alt="Uploaded Image"
+            />
+            <p>{{ item.name }}</p>
+            <div class="image-actions">
+              <button
+                type="button"
+                class="delete-button"
+                (click)="deleteProposedItem(i)"
+              >
+                <i class="fas fa-times"></i>
+              </button>
+            </div>
+          </div>
+          <div class="upload-placeholder" (click)="addObject(prpUserId, 'proposer')">
+            <img
+              class="img-plus"
+              src="assets/img/icons/Plus.svg"
+              alt="Uploaded Image"
+            />
+            <p>Ajouter objet</p>
+            <!-- <input type="file" #fileInput id="fileInput" hidden (change)="onFileSelected($event)" /> -->
+          </div>
+          <span *ngIf="proposeError" class="text-danger">
+            {{ proposeError }}
+          </span>
+        </div>
+        <p class="container_error" *ngIf="error2!==''">{{ error2 }}</p>
+      </div>
+    </div>
+    <div class="row pt-20" >
+      <div class="col-xl-12">
+        <div class="contact__submit">
+          <button type="submit" class="os-btn os-btn-black" (click)="proposeExchange()">
+            <span
+              *ngIf="loading"
+              class="spinner-border spinner-border-sm"
+              role="status"
+              aria-hidden="true"
+            ></span>
+            Propose l'échange
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="row" *ngIf="error !== ''">
+      <div class="col-xl-12">
+        <p class="container_error">{{ error }}</p>
+      </div>
+    </div>
+  </section>
+</main>
+<app-footer-one></app-footer-one>
