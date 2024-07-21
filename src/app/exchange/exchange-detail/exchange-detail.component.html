@@ -1,0 +1,34 @@
+<app-header-one [transparent]="true" [white_bg]="true"></app-header-one>
+
+<main>
+  <app-breadcrumb-one title="Fiche échange" subtitle="Fiche échange"></app-breadcrumb-one>
+
+  <section class="shop__area pt-100 pb-100">
+    <div class="container">
+      <div class="card">
+        <div class="card-header" id="headingOne">
+          <h5 class="mb-0 align-items-right" style="text-align: right;" *ngIf="!closed">
+            <button class="os-btn os-btn-black ml-10 mb-10 button">
+              <i class="fa fa-thumbs-up"></i>
+              Accepter
+            </button>
+            <button class="os-btn os-btn-secondary ml-10 button cancel-filter">
+              <i class="fa fa-ban"></i>
+              Refuser
+            </button>
+          </h5>
+          <h5 class="mb-0 align-items-right" style="text-align: right;" *ngIf="closed">
+            Echange répondu
+          </h5>
+        </div>
+        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+          <div class="card-body">
+            Exchange Fiche
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<app-footer-one></app-footer-one>
