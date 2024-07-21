@@ -1,0 +1,178 @@
+<!-- header start -->
+<app-header-one [transparent]="true" [white_bg]="true"></app-header-one>
+<!-- header end -->
+
+<main>
+
+  <!-- breadcrumb start -->
+  <app-breadcrumb-one title="{{dataUser ? dataUser.username : 'Searching...'}}" subtitle="Profil"></app-breadcrumb-one>
+  <!-- breadcrumb end -->
+
+  <!-- profile area start -->
+  <div *ngIf="loadingMain; else section">
+    <section class="profile__area pt-120 pb-50 grey-bg">
+      <div class="container">
+        <div class="profile__basic-inner pb-20 bg-white">
+          <div class="row align-items-center">
+            <div class="col-xxl-6 col-md-6">
+              <div class="profile__basic d-md-flex align-items-center">
+                <div class="profile__basic-content">
+                  <h3 class="profile__basic-title">
+                    Chargement des informations du compte... <span class="spinner-border spinner-border-sm"
+                      role="status" aria-hidden="true"></span>
+                  </h3>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+  <ng-template #section>
+    <section class="profile__area pt-120 pb-50 grey-bg">
+      <div class="container">
+        <div class="profile__basic-inner pb-20 bg-white">
+          <div class="row align-items-center">
+            <div class="col-xxl-6 col-md-6">
+              <div class="profile__basic d-md-flex align-items-center">
+                <div class="profile__basic-thumb mr-30">
+                  <img src="{{dataUser?.profile_picture}}" alt="">
+                </div>
+                <div class="profile__basic-content">
+                  <h3 class="profile__basic-title">
+                    <span>{{dataUser?.first_name}} {{dataUser?.last_name}} ({{dataUser?.username}})</span> !
+                  </h3>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- profile area end -->
+
+    <!-- profile menu area start -->
+    <section class="profile__menu pb-70 grey-bg">
+      <div class="container">
+        <div class="row">
+          <div class="col-xxl-4 col-md-4">
+            <div class="profile__menu-left bg-white mb-50">
+              <h3 class="profile__menu-title"><i class="fa fa-list-alt"></i>Information du compte</h3>
+              <div class="profile__menu-tab">
+                <div class="profile__info-wrapper white-bg">
+                  <div class="profile__info-item">
+                    <p>Pseudo</p>
+                    <h4>{{dataUser?.username}}</h4>
+                  </div>
+                  <div class="profile__info-item">
+                    <p>Adresse Email</p>
+                    <h4>
+                      <a href="mailto:{{dataUser?.email}}" class="__cf_email__">{{dataUser?.email}}</a>
+                    </h4>
+                  </div>
+                  <div class="profile__info-item">
+                    <p>Nom</p>
+                    <h4>{{dataUser?.last_name}}</h4>
+                  </div>
+                  <div class="profile__info-item">
+                    <p>Prénom</p>
+                    <h4>{{dataUser?.first_name}}</h4>
+                  </div>
+                  <div class="profile__info-item">
+                    <p>Genre (H/F)</p>
+                    <h4>{{ dataUser?.gender === 'Male' ? 'Masculin' : 'Féminin' }}</h4>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xxl-8 col-md-8">
+            <div class="profile__menu-right">
+
+              <div *ngIf="loading" class="d-flex justify-content-center align-items-center order__info-top" style="height: 300px;">
+                <i class="fas fa-spinner fa-spin fa-3x"></i>
+              </div>
+
+              <div class="tab-pane">
+                <div class="order__info">
+                  <div class="order__info-top d-flex justify-content-between align-items-center">
+                    <h3 class="order__info-title">Liste de ces objets</h3>
+                  </div>
+                  <div *ngIf="!loading && userObjects.length === 0" class="cartmini__empty text-center mt-80">
+                    <img src="/assets/img/shop/empty-cart.png" alt="empty-cart-img" />
+                    <h4>Oh! Aucun résultat!!!</h4>
+                    <p>Veuillez vérifier les filtres que vous avez renseignés</p>
+                    <a routerLink="/shop" class="os-btn os-btn-3">Continuer mon exploration</a>
+                  </div>
+
+                  <div *ngIf="!loading" class="tab-content order__info-top" id="pills-tabContent">
+
+                    <div class="shop__header d-sm-flex justify-content-between align-items-center mb-40">
+                      <div class="shop__header-left">
+                        <div class="show-text password__input" style="margin: 0;">
+                          <input type="text" [(ngModel)]="name" (input)="onSearchChange()"
+                            placeholder="Rechercher..." style="height: 50px;"/>
+                        </div>
+                      </div>
+                      <div
+                        class="shop__header-right d-flex align-items-center justify-content-between justify-content-sm-end">
+                        <div class="sort-wrapper mr-30 pr-25 p-relative">
+                          <select [(ngModel)]="order_direction" (ngModelChange)="onSortingChange($event)">
+                            <option value="asc">Le plus récent</option>
+                            <option value="desc">Le plus ancien</option>
+                          </select>
+                        </div>
+                        <ul class="nav nav-pills" id="pills-tab" role="tablist">
+                          <li class="nav-item">
+                            <a class="nav-link active" id="pills-grid-tab" data-bs-toggle="pill" href="#pills-grid"
+                              role="tab" aria-controls="pills-grid" aria-selected="true"><i class="fas fa-th"></i></a>
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link" id="pills-list-tab" data-bs-toggle="pill" href="#pills-list" role="tab"
+                              aria-controls="pills-list" aria-selected="false"><i class="fas fa-list-ul"></i></a>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+
+                    <div class="tab-pane fade show active" id="pills-grid" role="tabpanel"
+                      aria-labelledby="pills-grid-tab">
+                      <div class="row custom-row-10">
+                        <div *ngFor="let item of userObjects" class="col-xl-3 col-lg-3 col-md-6 col-sm-6 custom-col-10">
+                          <app-object-card [object]="item"></app-object-card>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="tab-pane" id="pills-list" role="tabpanel" aria-labelledby="pills-list-tab">
+                      <ng-container *ngFor="let item of userObjects">
+                        <app-object-card-expanded [object]="item"></app-object-card-expanded>
+                      </ng-container>
+                    </div>
+                    <div class="row mt-40">
+                      <div class="col-xl-12">
+                        <div class="shop-pagination-wrapper d-md-flex justify-content-between align-items-center">
+                          <app-pagination [data]="userObjects" [paginate]="paginate" (setPage)="setPage($event)">
+                          </app-pagination>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </ng-template>
+
+
+  <!-- profile menu area end -->
+
+</main>
+
+<!-- footer start -->
+<app-footer-one></app-footer-one>
+<!-- footer end -->
