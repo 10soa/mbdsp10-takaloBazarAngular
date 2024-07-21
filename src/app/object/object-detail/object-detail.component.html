@@ -44,6 +44,7 @@
             <button *ngIf="isOwner" class="btn btn-custom mt-3">Retirer</button>
             <button *ngIf="isOwner" class="btn btn-custom mt-3">Modifier </button>
             <button *ngIf="isConnected" class="btn btn-custom mt-3">Signaler</button>
+            <button *ngIf="!isOwner" class="btn btn-custom mt-3" (click)="ProposeExchange()">Proposer un echange</button>
           </div>
         </div>
       </div>

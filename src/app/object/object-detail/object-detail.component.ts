@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ObjectService } from 'src/app/services/object.service';
 import { SessionService } from 'src/app/services/session.service';
 import { Object } from 'src/app/models/object.model';
@@ -17,7 +17,8 @@ export class ObjectDetailComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private objectService: ObjectService,
-    private sessionService: SessionService
+    private sessionService: SessionService,
+    private router: Router,
   ) {}
 
   ngOnInit(): void {
@@ -30,5 +31,9 @@ export class ObjectDetailComponent implements OnInit {
         this.isConnected = userIdFromToken !== null;
       });
     }
+  }
+
+  ProposeExchange(){
+    this.router.navigate(['/exchange/propose/'+this.object?.user_id], { queryParams: {name : this.object?.name, id : this.object?.id , image :this.object?.image ,rcvUsername :this.object?.user?.username }  });
   }
 }
