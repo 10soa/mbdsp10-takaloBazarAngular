@@ -17,10 +17,8 @@ import { ObjectUpdateComponent } from './object-update/object-update.component';
   declarations: [
     ObjectCreateComponent,
     ObjectSearchComponent,
-    ObjectCardComponent,
-    ObjectCardExpandedComponent,
     ObjectDetailComponent,
-    ObjectUpdateComponent
+    ObjectUpdateComponent,
   ],
   imports: [
     CommonModule,
@@ -28,6 +26,8 @@ import { ObjectUpdateComponent } from './object-update/object-update.component';
     SharedModule,
     FormsModule,
     ReactiveFormsModule,
+    ObjectCardExpandedComponent,
+    ObjectCardComponent
   ],
 })
 export class ObjectsModule { }
