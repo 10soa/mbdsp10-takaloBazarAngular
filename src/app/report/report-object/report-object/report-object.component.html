@@ -1,0 +1,21 @@
+<div class="modal-header">
+    <h5 class="modal-title">Signaler l'objet</h5>
+    <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss()"></button>
+  </div>
+  <div class="modal-body">
+    <div class="mb-3">
+      <label for="reason" class="form-label">Raison du signalement</label>
+      <select id="reason" class="form-select" [(ngModel)]="reason" name="reason">
+        <option *ngFor="let r of typeReports" [value]="r.name">{{ r.name }}</option>
+      </select>
+    </div>
+    <div class="mb-3">
+      <label for="customReason" class="form-label">Autre raison</label>
+      <input type="text" id="customReason" class="form-control" [(ngModel)]="reason" name="customReason">
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="activeModal.dismiss()">Annuler</button>
+    <button type="button" class="btn btn-primary" (click)="submitReport()">Envoyer</button>
+  </div>
+  

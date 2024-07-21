@@ -4,9 +4,9 @@ import { ObjectService } from 'src/app/services/object.service';
 import { SessionService } from 'src/app/services/session.service';
 import { Object } from 'src/app/models/object.model';
 import { ToastrService } from 'ngx-toastr';
-
-// Import Bootstrap Tooltip
-import Tooltip from 'bootstrap/js/dist/tooltip';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ReportObjectComponent } from 'src/app/report/report-object/report-object/report-object.component';
+import { TypeReportService } from 'src/app/services/type-report.service';
 
 @Component({
   selector: 'app-object-detail',
@@ -17,13 +17,16 @@ export class ObjectDetailComponent implements OnInit {
   object: Object | undefined;
   isOwner: boolean = false;
   isConnected: boolean = false;
+  typeReports: any[] = []; 
 
   constructor(
     private route: ActivatedRoute,
     private objectService: ObjectService,
     private sessionService: SessionService,
     private toastr: ToastrService,
-    private router: Router
+    private router: Router,
+    private modalService: NgbModal,
+    private typeReportService: TypeReportService
   ) {}
 
   ngOnInit(): void {
@@ -34,16 +37,22 @@ export class ObjectDetailComponent implements OnInit {
         const userIdFromToken = this.sessionService.getUserIdFromToken();
         this.isOwner = userIdFromToken !== null && userIdFromToken == this.object?.user_id?.toString();
         this.isConnected = userIdFromToken !== null;
-
-        // Initialize tooltips
-        setTimeout(() => {
-          const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
-          tooltipTriggerList.map(function (tooltipTriggerEl) {
-            return new Tooltip(tooltipTriggerEl);
-          });
-        }, 500);
       });
     }
+
+    this.loadTypeReports();
+  }
+
+  loadTypeReports(): void {
+    this.typeReportService.getTypeReports().subscribe(
+      (data: any) => {
+        this.typeReports = data; 
+      },
+      (error) => {
+        this.toastr.error('Erreur lors du chargement des types de signalement.');
+        console.error('Erreur:', error);
+      }
+    );
   }
 
   removeObject(): void {
@@ -52,7 +61,9 @@ export class ObjectDetailComponent implements OnInit {
         (response) => {
           this.toastr.success(response.message);
           this.object!.status = 'Removed';
-          this.router.navigate(['/object', this.object?.id]);
+          if (this.object) {
+            this.router.navigate(['/object', this.object.id]);
+          }
         },
         (error) => {
           this.toastr.error('Erreur lors du retrait de l\'objet.');
@@ -60,5 +71,19 @@ export class ObjectDetailComponent implements OnInit {
         }
       );
     }
+  }
+
+  openReportModal(): void {
+    const modalRef = this.modalService.open(ReportObjectComponent);
+    modalRef.componentInstance.objectId = this.object?.id;
+    modalRef.componentInstance.typeReports = this.typeReports; 
+    modalRef.result.then(
+      (result) => {
+        this.toastr.success('Signalement envoyé avec succès.');
+      },
+      (reason) => {
+        this.toastr.info('Signalement annulé.');
+      }
+    );
   }
 }

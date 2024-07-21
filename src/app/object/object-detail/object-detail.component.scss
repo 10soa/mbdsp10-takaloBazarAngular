@@ -5,6 +5,12 @@
       gap: 20px;
       align-items: flex-start;
     }
+
+    .object-details__tag {
+        i {
+          color: #bc8246;
+        }
+      }
   
     &__image-box {
       text-align: center;
@@ -77,5 +83,6 @@
         color: #a36629;
       }
     }
+    
   }
   
