@@ -16,16 +16,16 @@
               </a>
             </div>
             <div class="header__search-header">
-              <h3>Search</h3>
+              <h3>Recherche</h3>
             </div>
             <div class="header__search-categories">
               <ul class="search-category">
                 <li
-                  (click)="handleProductType(c)"
-                  *ngFor="let c of uniqueChildren; let i = index"
+                  (click)="handleProductType(itemCategory.id.toString())"
+                  *ngFor="let itemCategory of listeCategory; let i = index"
                 >
-                  <a class="cursor-pointer" [class.active]="c === productType">
-                    {{ c }}
+                  <a class="cursor-pointer" [class.active]="itemCategory.id.toString() === productType">
+                    {{itemCategory.name}}
                   </a>
                 </li>
               </ul>
@@ -33,7 +33,7 @@
             <div class="header__search-input p-relative">
               <input
                 type="text"
-                placeholder="Search for products... "
+                placeholder="Faire votre Recherche ici... "
                 [(ngModel)]="searchText"
                 name="searchText"
               />

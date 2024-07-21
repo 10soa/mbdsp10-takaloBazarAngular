@@ -4,8 +4,6 @@ import { AcceuilFORoutingModule } from './acceuilFO-routing.module';
 import { SharedModule } from '../shared/shared.module';
 import { HomeFOComponent } from './home/homeFO.component';
 import { ShopModule } from '../shop/shop.module';
-
-
 @NgModule({
   declarations: [
     HomeFOComponent
@@ -14,7 +12,7 @@ import { ShopModule } from '../shop/shop.module';
     CommonModule,
     AcceuilFORoutingModule,
     SharedModule,
-    ShopModule,
+    ShopModule
   ]
 })
 export class AcceuilFOModule { }
