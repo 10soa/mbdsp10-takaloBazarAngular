@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ObjectService } from 'src/app/services/object.service';
 import { SessionService } from 'src/app/services/session.service';
 import { Object } from 'src/app/models/object.model';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-object-detail',
@@ -17,7 +18,9 @@ export class ObjectDetailComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private objectService: ObjectService,
-    private sessionService: SessionService
+    private sessionService: SessionService,
+    private toastr: ToastrService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -29,6 +32,24 @@ export class ObjectDetailComponent implements OnInit {
         this.isOwner = userIdFromToken !== null && userIdFromToken == this.object?.user_id?.toString();
         this.isConnected = userIdFromToken !== null;
       });
+    }
+  }
+
+  removeObject(): void {
+    if (this.object) {
+      this.objectService.removeObject(this.object.id).subscribe(
+        (response) => {
+          this.toastr.success(response.message);
+          this.object!.status = 'Removed';
+          if (this.object) {
+            this.router.navigate(['/object', this.object.id]);
+          }
+        },
+        (error) => {
+          this.toastr.error('Erreur lors du retrait de l\'objet.');
+          console.error('Erreur:', error);
+        }
+      );
     }
   }
 }

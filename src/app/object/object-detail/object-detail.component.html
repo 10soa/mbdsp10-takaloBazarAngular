@@ -41,7 +41,7 @@
               <span><a class="cursor-pointer">{{object.user?.username}}</a></span>
             </div>
 
-            <button *ngIf="isOwner" class="btn btn-custom mt-3">Retirer</button>
+            <button *ngIf="isOwner" class="btn btn-custom mt-3" (click)="removeObject()">Retirer</button>
             <button *ngIf="isOwner" class="btn btn-custom mt-3">Modifier </button>
             <button *ngIf="isConnected" class="btn btn-custom mt-3">Signaler</button>
           </div>
