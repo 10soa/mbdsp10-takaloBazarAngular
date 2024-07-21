@@ -41,9 +41,11 @@
               <span><a class="cursor-pointer">{{object.user?.username}}</a></span>
             </div>
 
-            <button *ngIf="isOwner" class="btn btn-custom mt-3" (click)="removeObject()">Retirer</button>
-            <button *ngIf="isOwner" class="btn btn-custom mt-3">Modifier </button>
-            <button *ngIf="isConnected" class="btn btn-custom mt-3">Signaler</button>
+            <div class="icon-buttons mt-3">
+              <i *ngIf="isOwner" class="fas fa-trash-alt icon-button" title="Retirer l'objet" (click)="removeObject()" data-bs-toggle="tooltip" data-bs-placement="top"></i>
+              <i *ngIf="isOwner" class="fas fa-edit icon-button" title="Modifier l'objet" data-bs-toggle="tooltip" data-bs-placement="top"></i>
+              <i *ngIf="isConnected" class="fas fa-flag icon-button" title="Signaler" data-bs-toggle="tooltip" data-bs-placement="top"></i>
+            </div>
           </div>
         </div>
       </div>
@@ -60,3 +62,4 @@
   </section>
 </main>
 <app-footer-one></app-footer-one>
+    
