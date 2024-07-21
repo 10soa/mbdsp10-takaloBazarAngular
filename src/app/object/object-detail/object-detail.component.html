@@ -44,6 +44,7 @@
             <div class="icon-buttons mt-3">
               <i *ngIf="isOwner" class="fas fa-trash-alt icon-button" title="Retirer l'objet" (click)="removeObject()" data-bs-toggle="tooltip" data-bs-placement="top"></i>
               <i *ngIf="isOwner" class="fas fa-edit icon-button" title="Modifier l'objet" data-bs-toggle="tooltip" data-bs-placement="top"></i>
+              <i *ngIf="!isOwner" class="fas fa-exchange icon-button" (click)="ProposeExchange()" title="Proposer un echange" data-bs-toggle="tooltip" data-bs-placement="top"></i>
               <i *ngIf="isConnected" class="fas fa-flag icon-button" title="Signaler" data-bs-toggle="tooltip" data-bs-placement="top"></i>
             </div>
           </div>
