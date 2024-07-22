@@ -32,3 +32,9 @@
     border-width: 0.2em;
   }
   
+  .modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px; 
+  }
+  
