@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { ExchangesService } from 'src/app/services/exchange.service';
-import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { AddNoteComponent } from './addNote/add-note.component';
+import { AcceptExchangeComponent } from './accept-exchange/accept-exchange.component';
 
 @Component({
   selector: 'app-exchange-detail',
@@ -69,6 +70,18 @@ export class ExchangeDetailComponent implements OnInit {
     dialog.componentInstance.setDialogRef(dialog);
     dialog.afterClosed().subscribe(() => {
       this.fetchExchangeDetails(id);
+    });
+  }
+
+  showAcceptExchangeComponent (){
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.data= this.exchange.id;
+    const dialog = this.dialog.open(AcceptExchangeComponent,dialogConfig);
+    dialog.componentInstance.setDialogRef(dialog);
+    dialog.afterClosed().subscribe(result => {
+      if(result){
+        this.fetchExchangeDetails(result);
+      }
     });
   }
 

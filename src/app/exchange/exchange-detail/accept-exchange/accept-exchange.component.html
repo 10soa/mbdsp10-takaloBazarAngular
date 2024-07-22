@@ -1,0 +1,43 @@
+<mat-card class="exchange-card">
+    <mat-card-header>
+      <mat-card-title>Confirmation de l'acceptation de l'échange</mat-card-title>
+    </mat-card-header>
+  
+    <mat-card-content>
+      <form class="exchange-form">
+        <mat-form-field appearance="fill" class="form-field">
+          <mat-label>Lieu du rendez-vous <span
+            class="required"
+            >*</span
+          ></mat-label>
+          <input matInput placeholder="Entrez le lieu" [(ngModel)]="meeting_place" name="meeting_place">
+        </mat-form-field>
+  
+        <mat-form-field appearance="fill" class="form-field">
+          <mat-label>Date du rendez-vous<span
+            class="required"
+            >*</span
+          ></mat-label>
+          <input matInput [matDatepicker]="picker" placeholder="Choisissez une date" [(ngModel)]="appointment_date" name="appointment_date">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        <div class="row" *ngIf="error !== ''">
+          <div class="col-xl-12">
+            <p class="container_error">{{ error }}</p>
+          </div>
+        </div>
+      </form>
+    </mat-card-content>
+  
+    <mat-card-actions align="end">
+      <button mat-button (click)="onConfirm()" class="confirm">  <span
+        *ngIf="loading"
+        class="spinner-border spinner-border-sm"
+        role="status"
+        aria-hidden="true"
+      ></span> <i   *ngIf="!loading" class="fa fa-check pr-5" ></i>Confirmer</button>
+      <button mat-button (click)="onCancel()" class="close"> <i class="fa fa-times pr-5"></i>Annuler</button>
+    </mat-card-actions>
+  </mat-card>
+  

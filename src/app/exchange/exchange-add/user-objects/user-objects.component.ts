@@ -29,9 +29,6 @@ export class UserObjectsComponent implements OnInit {
   searchSubject: Subject<string> = new Subject<string>();
 
   constructor(
-    private route: ActivatedRoute,
-    private userService: UserService,
-    private authService: AuthService,
     @Optional() @Inject(MAT_DIALOG_DATA) public data: any,
     private objectService: ObjectService
   ) { }

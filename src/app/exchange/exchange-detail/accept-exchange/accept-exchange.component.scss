@@ -1,0 +1,62 @@
+.exchange-card {
+    width: 400px;
+    padding: 0 20px;
+  }
+  
+  .exchange-form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .form-field {
+    margin-bottom: 20px;
+  }
+
+  .mat-mdc-card-header{
+    padding: 16px !important;
+    color: #323232;
+  }
+  
+  mat-card-actions {
+    display: flex;
+    justify-content: flex-end;
+    padding-top: 20px;
+    gap: 10px;
+  }
+  
+  mat-card-title {
+    font-weight: bold;
+    font-size: 1.2em;
+  }
+  
+  mat-form-field {
+    width: 100%;
+  }
+
+.mat-mdc-button.confirm:not(:disabled){
+    color: #ffffff;
+    background-color: #323232;
+    border-color: #323232;
+    transition: all 0.3s ease-out 0s;
+}
+.mat-mdc-button.close:not(:disabled){
+    border: 2px solid #ebebeb;
+    color: #323232;
+    background: transparent;
+    transition: all 0.3s ease-out 0s;
+}
+.mat-mdc-button:hover{
+    border-color: #bc8246 !important;
+    background-color: #bc8246 !important;
+}
+.required {
+    color: #b71c1C;
+}
+.container_error {
+    text-align: center;
+    color: #b71c1C;
+    margin-top: -36px;
+}
+
+
+  
