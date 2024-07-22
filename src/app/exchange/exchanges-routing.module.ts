@@ -12,11 +12,6 @@ const routes: Routes = [
     title: 'Create Object',
   },
   {
-    path: ':id',
-    component: ExchangeDetailComponent,
-    title: 'Echange',
-  },
-  {
     path: 'in-progress',
     component: ExchangeInProgressComponent,
     title: 'Echange en cours',
@@ -26,6 +21,11 @@ const routes: Routes = [
     component: ExchangeAddComponent,
     title: 'Proposer un échange',
   },
+  {
+    path: ':id',
+    component: ExchangeDetailComponent,
+    title: 'Echange',
+  },
 ];
 
 @NgModule({
@@ -33,4 +33,4 @@ const routes: Routes = [
   exports: [RouterModule],
 })
 
-export class ExchangeRoutingModule {}
+export class ExchangeRoutingModule { }
