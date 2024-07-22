@@ -64,11 +64,11 @@
                 <a [routerLink]="['/account', exchange.receiver_user_id]">{{ exchange.receiver.username }}</a>
               </div>
             </div>
-            <hr>
-            <div class="row">
+            <!-- <hr> -->
+            <div class="row mt-4">
               <div class="col-6">
                 <div class="order__info-top d-flex justify-content-center align-items-center bg-light-gray text-black p-2">
-                  <h3 class="order__info-title">Proposition</h3>
+                  <h3 class="order__info-title title-part">Proposition</h3>
                 </div>
                 <div class="row p-5 py-1">
                   <div *ngFor="let item of propositionObjects" class="col-5 mb-3">
@@ -79,7 +79,7 @@
 
               <div class="col-6">
                 <div class="order__info-top d-flex justify-content-center align-items-center bg-light-gray text-black p-2">
-                  <h3 class="order__info-title">Contre</h3>
+                  <h3 class="order__info-title title-part">Contre</h3>
                 </div>
                 <div class="row p-5 py-1">
                   <div *ngFor="let item of receiverObjects" class="col-5 mb-3">
@@ -89,13 +89,13 @@
               </div>
             </div>
 
-            <hr>
+            <!-- <hr> -->
 
             <div class="order__info-top d-flex justify-content-center align-items-center bg-light-gray text-black p-2" style="margin: 0;">
-              <h3 class="order__info-title"><i class="fa fa-info"></i> Détails</h3>
+              <h3 class="order__info-title title-part"><i class="fa fa-info"></i> Détails</h3>
             </div>
             <div class="profile__menu-tab">
-              <div class="profile__info-wrapper white-bg p-3">
+              <div class="p-3">
                 <div class="profile__info-item">
                   <p>Depuis :</p>
                   <h4>{{exchange?.created_at | date: 'dd/MM/yyyy'}}</h4>
