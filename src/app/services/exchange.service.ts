@@ -22,8 +22,8 @@ export class ExchangesService {
     return this.http.post(`${this.apiUrl}/exchange/proposed`, body);
   }
 
-  acceptExchange(exchangeId: string): Observable<any> {
-    return this.http.patch(`${this.apiUrl}/${exchangeId}/accept`, {});
+  acceptExchange(exchangeId: string,body:any): Observable<any> {
+    return this.http.patch(`${this.apiUrl}/exchange/${exchangeId}/accept`, body);
   }
 
   rejectExchange(exchangeId: string, note: string): Observable<any> {
