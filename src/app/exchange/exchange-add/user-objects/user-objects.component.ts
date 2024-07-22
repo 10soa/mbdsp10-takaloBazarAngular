@@ -64,7 +64,7 @@ export class UserObjectsComponent implements OnInit {
       order_direction: this.order_direction
     };
 
-    this.objectService.getUserObjects(queryParams).subscribe((response: any) => {
+    this.objectService.getUserObjects(+this.userId, queryParams).subscribe((response: any) => {
       const { objects, currentPage, totalPages } = response.data;
       this.userObjects = objects;
       this.paginate.pages = Array(totalPages).fill(0).map((x, i) => i + 1);

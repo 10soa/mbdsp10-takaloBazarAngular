@@ -5,6 +5,7 @@ import { ObjectSearchComponent } from './object-search/object-search.component';
 import { ObjectDetailComponent } from './object-detail/object-detail.component';
 import { ObjectUpdateComponent } from './object-update/object-update.component';
 import { AuthGuard } from '../auth.guard';
+import { MyObjectsComponent } from './my-objects/my-objects.component';
 
 const routes: Routes = [
   {
@@ -21,6 +22,12 @@ const routes: Routes = [
     path: 'update/:objectId',
     component: ObjectUpdateComponent,
     title: 'Modifier objet', 
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'my-objects',
+    component: MyObjectsComponent,
+    title: 'Mes Objets',
     canActivate: [AuthGuard]
   },
   {

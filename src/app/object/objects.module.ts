@@ -12,6 +12,7 @@ import { ObjectDetailComponent } from './object-detail/object-detail.component';
 import { ObjectUpdateComponent } from './object-update/object-update.component';
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { ReportObjectComponent } from '../report/report-object/report-object/report-object.component';
+import { MyObjectsComponent } from './my-objects/my-objects.component';
 
 
 
@@ -21,7 +22,8 @@ import { ReportObjectComponent } from '../report/report-object/report-object/rep
     ObjectSearchComponent,
     ObjectDetailComponent,
     ObjectUpdateComponent,
-    ReportObjectComponent
+    ReportObjectComponent,
+    MyObjectsComponent
   ],
   imports: [
     CommonModule,
