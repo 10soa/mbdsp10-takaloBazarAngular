@@ -114,8 +114,6 @@ export class ObjectUpdateComponent {
       image_file: this.filePreview && this.change ? this.filePreview : undefined,
       image: this.object.image
     };
-
-    console.log("object",object);
     
 
     this.objectService.updateObject(this.objectId,object).subscribe(

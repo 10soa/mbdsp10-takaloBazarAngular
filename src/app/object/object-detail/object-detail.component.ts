@@ -85,4 +85,8 @@ export class ObjectDetailComponent implements OnInit {
       }
     );
   }
+  
+  ProposeExchange(){
+    this.router.navigate(['/exchange/propose/'+this.object?.user_id], { queryParams: {name : this.object?.name, id : this.object?.id , image :this.object?.image ,rcvUsername :this.object?.user?.username }  });
+  }
 }

@@ -15,12 +15,11 @@ export class ExchangesService {
   constructor(private http: HttpClient) { }
 
   getExchangeById(exchangeId: string): Observable<any> {
-    return this.http.get(`${this.apiUrl}/${exchangeId}`);
+    return this.http.get(`${this.apiUrl}/exchange/${exchangeId}`);
   }
 
-  proposerExchange(rcvUserId: string, rcvObjectId: string, prpObjectId: string): Observable<any> {
-    const body = { rcvUserId, rcvObjectId, prpObjectId };
-    return this.http.post(`${this.apiUrl}/proposed`, body);
+  proposerExchange(body: any): Observable<any> {
+    return this.http.post(`${this.apiUrl}/exchange/proposed`, body);
   }
 
   acceptExchange(exchangeId: string): Observable<any> {

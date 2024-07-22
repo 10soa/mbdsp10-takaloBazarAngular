@@ -111,7 +111,8 @@
                       <label>First Name <span class="required">*</span></label>
                       <input type="text" id="firstName" placeholder="" formControlName="firstName" />
                       <!-- error message -->
-                      <span *ngIf="firstName?.hasError('required') && (firstName?.touched ||formSubmitted)" class="text-danger">
+                      <span *ngIf="firstName?.hasError('required') && (firstName?.touched ||formSubmitted)"
+                        class="text-danger">
                         First Name is required
                       </span>
                       <!-- error message -->
@@ -122,7 +123,8 @@
                       <label>Last Name <span class="required">*</span></label>
                       <input type="text" id="lastName" placeholder="" formControlName="lastName" />
                       <!-- error message -->
-                      <span *ngIf="lastName?.hasError('required') && (lastName?.touched ||formSubmitted)" class="text-danger">
+                      <span *ngIf="lastName?.hasError('required') && (lastName?.touched ||formSubmitted)"
+                        class="text-danger">
                         Last Name is required
                       </span>
                       <!-- error message -->
@@ -139,7 +141,8 @@
                       <label>Address <span class="required">*</span></label>
                       <input type="text" id="address" placeholder="Street address" formControlName="address" />
                       <!-- error message -->
-                      <span *ngIf="address?.hasError('required') && (address?.touched ||formSubmitted)" class="text-danger">
+                      <span *ngIf="address?.hasError('required') && (address?.touched ||formSubmitted)"
+                        class="text-danger">
                         Address is required
                       </span>
                       <!-- error message -->
@@ -147,13 +150,14 @@
                   </div>
                   <div class="col-md-12">
                     <div class="checkout-form-list">
-                      <input id="apartment" type="text" formControlName="apartment" placeholder="Apartment, suite, unit etc. (optional)" />
+                      <input id="apartment" type="text" formControlName="apartment"
+                        placeholder="Apartment, suite, unit etc. (optional)" />
                     </div>
                   </div>
                   <div class="col-md-12">
                     <div class="checkout-form-list">
                       <label>Town / City <span class="required">*</span></label>
-                      <input type="text" id="city" placeholder="Town / City" formControlName="city"/>
+                      <input type="text" id="city" placeholder="Town / City" formControlName="city" />
                       <!-- error message -->
                       <span *ngIf="city?.hasError('required') && (city?.touched ||formSubmitted)" class="text-danger">
                         City is required
@@ -177,7 +181,8 @@
                       <label>Postcode / Zip <span class="required">*</span></label>
                       <input type="text" id="zipCode" placeholder="Postcode / Zip" formControlName="zipCode" />
                       <!-- error message -->
-                      <span *ngIf="zipCode?.hasError('required') && (zipCode?.touched ||formSubmitted)" class="text-danger">
+                      <span *ngIf="zipCode?.hasError('required') && (zipCode?.touched ||formSubmitted)"
+                        class="text-danger">
                         ZipCode is required
                       </span>
                       <!-- error message -->
@@ -186,9 +191,11 @@
                   <div class="col-md-6">
                     <div class="checkout-form-list">
                       <label>Email Address <span class="required">*</span></label>
-                      <input type="email" placeholder="" id="email" formControlName="email"/>
+                      <input type="email" placeholder="" id="email" formControlName="email" />
                       <!-- error msg start -->
-                      <span *ngIf="(email?.hasError('required') && email?.touched) || (email?.hasError('email') && email?.dirty) || (formSubmitted && !email?.value)" class="text-danger" >
+                      <span
+                        *ngIf="(email?.hasError('required') && email?.touched) || (email?.hasError('email') && email?.dirty) || (formSubmitted && !email?.value)"
+                        class="text-danger">
                         Email is required and must be a valid email address
                       </span>
                       <!-- error msg end -->
@@ -265,8 +272,8 @@
                       <tr class="order-total">
                         <th>Order Total</th>
                         <td><strong><span class="amount">
-                          ${{(cartService.totalPriceQuantity().total + shipCost).toFixed(2)}}
-                         </span></strong>
+                              ${{(cartService.totalPriceQuantity().total + shipCost).toFixed(2)}}
+                            </span></strong>
                         </td>
                       </tr>
                     </tfoot>
