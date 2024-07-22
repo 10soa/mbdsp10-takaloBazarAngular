@@ -1,7 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { ReportService } from 'src/app/services/report.service';
-import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-report-object',
@@ -10,36 +9,28 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class ReportObjectComponent implements OnInit {
   @Input() objectId!: number;
-  @Input() typeReports: any[] = []; 
-  reason: string = '';
+  @Input() typeReports: any[] = [];
 
-  constructor(
-    public activeModal: NgbActiveModal,
-    private reportService: ReportService,
-    private toastr: ToastrService
-  ) {}
+  selectedReason: string = '';
+  customReason: string = '';
+
+  constructor(public activeModal: NgbActiveModal, private reportService: ReportService) {}
 
   ngOnInit(): void {}
 
   submitReport(): void {
-    if (this.reason.trim()) {
-      const reportData = {
-        object_id: this.objectId,
-        reason: this.reason
-      };
+    const reason = this.customReason || this.selectedReason;
+    this.reportService.reportObject(this.objectId, reason).subscribe(
+      () => {
+        this.activeModal.close('report submitted');
+      },
+      (error) => {
+        console.error('Erreur lors de l\'envoi du signalement:', error);
+      }
+    );
+  }
 
-      this.reportService.createReport(reportData).subscribe(
-        (response) => {
-          this.toastr.success('Signalement envoyé avec succès.');
-          this.activeModal.close();
-        },
-        (error) => {
-          this.toastr.error('Erreur lors de l\'envoi du signalement.');
-          console.error('Erreur:', error);
-        }
-      );
-    } else {
-      this.toastr.error('Veuillez sélectionner ou saisir une raison.');
-    }
+  close(): void {
+    this.activeModal.dismiss('cancel');
   }
 }

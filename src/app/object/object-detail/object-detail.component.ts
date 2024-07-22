@@ -17,7 +17,7 @@ export class ObjectDetailComponent implements OnInit {
   object: Object | undefined;
   isOwner: boolean = false;
   isConnected: boolean = false;
-  typeReports: any[] = []; 
+  typeReports: any[] = [];
 
   constructor(
     private route: ActivatedRoute,
@@ -45,11 +45,10 @@ export class ObjectDetailComponent implements OnInit {
 
   loadTypeReports(): void {
     this.typeReportService.getTypeReports().subscribe(
-      (data: any) => {
-        this.typeReports = data; 
+      (data) => {
+        this.typeReports = data;
       },
       (error) => {
-        this.toastr.error('Erreur lors du chargement des types de signalement.');
         console.error('Erreur:', error);
       }
     );
@@ -76,7 +75,7 @@ export class ObjectDetailComponent implements OnInit {
   openReportModal(): void {
     const modalRef = this.modalService.open(ReportObjectComponent);
     modalRef.componentInstance.objectId = this.object?.id;
-    modalRef.componentInstance.typeReports = this.typeReports; 
+    modalRef.componentInstance.typeReports = this.typeReports;
     modalRef.result.then(
       (result) => {
         this.toastr.success('Signalement envoyé avec succès.');
