@@ -28,7 +28,7 @@ export class ExchangesService {
 
   rejectExchange(exchangeId: string, note: string): Observable<any> {
     const body = { note };
-    return this.http.patch(`${this.apiUrl}/${exchangeId}/reject`, body);
+    return this.http.patch(`${this.apiUrl}/exchange/${exchangeId}/reject`, body);
   }
 
   getExchangeHistory(userId: string, page: number = 1, limit: number = 10, status: string = ''): Observable<any> {

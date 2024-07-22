@@ -1,0 +1,12 @@
+<div class="password__form white-bg">
+    <form [formGroup]="addForm" (ngSubmit)="validate()">
+      <div class="password__input">
+        <p>Pourquoi refuseriez-vous cette offre ?</p>
+        <textarea placeholder="" rows="4" cols="50" formControlName="note"></textarea>
+      </div>
+      <div class="password__input">
+        <button type="submit" class="os-btn os-btn-black">Soumettre  <span *ngIf="loading" class="spinner-border spinner-border-sm" role="status"
+            aria-hidden="true"></span></button>
+      </div>
+    </form>
+  </div>
