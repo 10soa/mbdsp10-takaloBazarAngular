@@ -77,7 +77,7 @@ export class OtherAccountComponent implements OnInit {
       order_direction: this.order_direction
     };
 
-    this.objectService.getUserObjects(queryParams).subscribe((response: any) => {
+    this.objectService.getUserObjects(+this.userId, queryParams).subscribe((response: any) => {
       console.log('Objects', response);
       const { objects, currentPage, totalPages } = response.data;
       this.userObjects = objects;
