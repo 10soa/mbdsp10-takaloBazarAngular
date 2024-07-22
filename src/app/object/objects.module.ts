@@ -10,6 +10,8 @@ import { ObjectCardComponent } from './object-card/object-card.component';
 import { ObjectCardExpandedComponent } from './object-card-expanded/object-card-expanded.component';
 import { ObjectDetailComponent } from './object-detail/object-detail.component';
 import { ObjectUpdateComponent } from './object-update/object-update.component';
+import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
+import { ReportObjectComponent } from '../report/report-object/report-object/report-object.component';
 
 
 
@@ -19,12 +21,14 @@ import { ObjectUpdateComponent } from './object-update/object-update.component';
     ObjectSearchComponent,
     ObjectDetailComponent,
     ObjectUpdateComponent,
+    ReportObjectComponent
   ],
   imports: [
     CommonModule,
     ObjectsRoutingModule,
     SharedModule,
     FormsModule,
+    NgbModalModule,
     ReactiveFormsModule,
     ObjectCardExpandedComponent,
     ObjectCardComponent

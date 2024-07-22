@@ -1,0 +1,28 @@
+.btn-primary {
+    background-color: #bc8246;
+    border-color: #bc8246;
+    color: white;
+  }
+  
+  .btn-primary:hover {
+    background-color: darken(#bc8246, 10%);
+    border-color: darken(#bc8246, 10%);
+  }
+  
+  .btn-secondary {
+    background-color: black;
+    border-color: black;
+    color: white;
+  }
+  
+  .btn-secondary:hover {
+    background-color: darken(black, 10%);
+    border-color: darken(black, 10%);
+  }
+  
+  .modal-title {
+    margin: 0 auto;
+    text-align: center;
+    width: 100%;
+  }
+  
