@@ -4,23 +4,6 @@
       <img [src]="object.image" alt="product-img">
       <img class="product__thumb-2" [src]="object.image" alt="product-img">
     </a>
-    <div class="product__action transition-3">
-      <a (click)="addToWishlist(object)" class="cursor-pointer" [class.active]="isItemInWishlist(object)"
-        data-bs-toggle="tooltip" data-placement="top" title="Add to Wishlist">
-        <i class="fal fa-heart"></i>
-      </a>
-      <a (click)="addToCompare(object)" class="cursor-pointer" [class.active]="isItemInCompare(object)"
-        data-toggle="tooltip" data-placement="top" title="Compare">
-        <i class="fal fa-sliders-h"></i>
-      </a>
-      <!-- Button trigger modal -->
-      <a class="cursor-pointer" data-bs-toggle="modal">
-        <i class="fal fa-search"></i>
-      </a>
-      <!-- <a class="cursor-pointer" data-bs-toggle="modal" [attr.data-bs-target]="'#' + utilsService.modalId" (click)="utilsService.handleOpenModal('product-modal-' + object.id, product)">
-              <i class="fal fa-search"></i>
-          </a> -->
-    </div>
   </div>
   <div class="product__content p-relative">
     <div class="product__content-inner">
@@ -31,11 +14,8 @@
       </div>
     </div>
     <div class="add-cart p-absolute transition-3">
-      <a (click)="addToCart(object)" class="cursor-pointer">
-        + Add to Cart
-      </a>
-      <a *ngIf="isItemInCart(object)" routerLink="/shop/cart" class="cursor-pointer">
-        View Cart
+      <a [routerLink]="['/object', object.id]" class="cursor-pointer">
+        Detail
       </a>
     </div>
   </div>

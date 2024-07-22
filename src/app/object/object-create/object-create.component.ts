@@ -5,6 +5,7 @@ import { Category } from 'src/app/models/category.model';
 import { Object } from 'src/app/models/object.model';
 import { CategoryService } from 'src/app/services/category.service';
 import { ObjectService } from 'src/app/services/object.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   templateUrl: './object-create.component.html',
@@ -28,6 +29,7 @@ export class ObjectCreateComponent implements OnInit {
     private objectService: ObjectService,
     private router: Router,
     private categoryService: CategoryService,
+    private toastrService: ToastrService,
   ) { }
 
   ngOnInit(): void {
@@ -66,29 +68,14 @@ export class ObjectCreateComponent implements OnInit {
           (error) => {
             console.error('Error creating object:', error);
             this.loading = false;
+            this.toastrService.error(error.error.error);
           }
         );
       };
       reader.readAsDataURL(this.file);
     } else {
-      const object = {
-        name: this.object.name,
-        description: this.object.description,
-        category_id: this.object.category_id,
-        image_file: null
-      };
-
-      this.objectService.createObject(object).subscribe(
-        (data: any) => {
-          console.log('Object created successfully', data);
-          this.loading = false;
-          this.router.navigate([`/object/${data.id}`]);
-        },
-        (error) => {
-          console.error('Error creating object:', error);
-          this.loading = false;
-        }
-      );
+      this.toastrService.error('Chaque objet doit avoir une image');
+      this.loading = false;
     }
   }
 
