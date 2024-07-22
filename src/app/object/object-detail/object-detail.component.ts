@@ -85,6 +85,12 @@ export class ObjectDetailComponent implements OnInit {
       }
     );
   }
+
+  navigateToUpdate(): void {
+    if (this.object) {
+      this.router.navigate(['/object/update', this.object.id]);
+    }
+  }
   
   ProposeExchange(){
     this.router.navigate(['/exchange/propose/'+this.object?.user_id], { queryParams: {name : this.object?.name, id : this.object?.id , image :this.object?.image ,rcvUsername :this.object?.user?.username }  });
