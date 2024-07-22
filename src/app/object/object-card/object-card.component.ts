@@ -20,24 +20,4 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 })
 export class ObjectCardComponent {
   @Input() object!: Object;
-
-  addToWishlist(object: Object) {
-
-  }
-  addToCart(object: Object) {
-
-  }
-  isItemInCart(object: Object) {
-
-  }
-  isItemInWishlist(object: Object) {
-
-  }
-  addToCompare(object: Object) {
-
-  }
-  isItemInCompare(object: Object) {
-
-  }
-
 }
