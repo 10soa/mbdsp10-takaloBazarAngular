@@ -37,4 +37,8 @@ export class ReportObjectComponent implements OnInit {
   close(): void {
     this.activeModal.dismiss('cancel');
   }
+
+  isOtherReasonSelected(): boolean {
+    return this.selectedReason === 'Autre';
+  }
 }
