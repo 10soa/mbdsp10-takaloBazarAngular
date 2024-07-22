@@ -1,5 +1,5 @@
 .img-circle {
-  border-radius: 100%;
+  border-radius: 50%;
   width: 100px;
 }
 
@@ -11,7 +11,69 @@
 
 hr {
   width: 50%;
-  margin: auto;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
+  margin: 1rem auto;
+}
+
+.status-label {
+  font-weight: bold;
+  color: #bc8246;
+}
+
+.bg-light-gray {
+  background-color: #f0f0f0;
+}
+
+.text-black {
+  color: black;
+}
+
+.order__info-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.profile__info-wrapper {
+  padding: 15px;
+  background: #f9f9f9;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.profile__info-item {
+  margin-bottom: 15px;
+}
+
+.profile__info-item p {
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #bc8246;
+}
+
+.profile__info-item h4 {
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+.os-btn-black {
+  background-color: black;
+  color: white;
+  border: none;
+}
+
+.os-btn-black:hover {
+  background-color: #333;
+}
+
+.os-btn-secondary {
+  background-color: #bc8246;
+  color: white;
+  border: none;
+}
+
+.os-btn-secondary:hover {
+  background-color: darken(#bc8246, 10%);
+}
+
+.text-center {
+  text-align: center;
 }
