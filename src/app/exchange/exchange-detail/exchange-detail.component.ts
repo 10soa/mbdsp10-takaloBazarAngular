@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ExchangesService } from 'src/app/services/exchange.service';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { AddNoteComponent } from './addNote/add-note.component';
 
 @Component({
   selector: 'app-exchange-detail',
@@ -17,7 +19,8 @@ export class ExchangeDetailComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private exchangesService: ExchangesService
+    private exchangesService: ExchangesService,
+    private dialog: MatDialog
   ) { }
 
   ngOnInit(): void {
@@ -57,6 +60,16 @@ export class ExchangeDetailComponent implements OnInit {
       default:
         return status;
     }
+  }
+
+  refusedExchange(id:string){
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.data=id;
+    const dialog = this.dialog.open(AddNoteComponent,dialogConfig);
+    dialog.componentInstance.setDialogRef(dialog);
+    dialog.afterClosed().subscribe(() => {
+      this.fetchExchangeDetails(id);
+    });
   }
 
 }

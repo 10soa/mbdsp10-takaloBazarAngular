@@ -39,7 +39,7 @@
                   <i class="fa fa-thumbs-up"></i>
                   Accepter
                 </button>
-                <button class="os-btn os-btn-secondary ml-10 button cancel-filter">
+                <button *ngIf="exchange.status !== 'Refused'" (click)="refusedExchange(exchange.id)" class="os-btn os-btn-secondary ml-10 button cancel-filter">
                   <i class="fa fa-ban"></i>
                   Refuser
                 </button>
