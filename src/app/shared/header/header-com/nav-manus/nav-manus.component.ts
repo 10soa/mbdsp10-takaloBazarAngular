@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { SessionService } from 'src/app/services/session.service';
 import menuData from 'src/app/shared/data/menu-data';
 import { IMenuType } from 'src/app/shared/types/menu-d-t';
 
@@ -8,7 +9,9 @@ import { IMenuType } from 'src/app/shared/types/menu-d-t';
   styleUrls: ['./nav-manus.component.scss']
 })
 export class NavManusComponent {
-  public menu_data:IMenuType[] = menuData;
+  public menu_data: IMenuType[] = menuData;
+
+  constructor(public sessionService: SessionService) { }
 
   bg: string = '/assets/img/bg/mega-menu-bg.jpg';
 

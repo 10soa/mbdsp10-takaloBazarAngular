@@ -7,7 +7,7 @@
         <div
           [ngClass]="header_big ? 'col-xl-2 col-lg-2 col-md-4 col-sm-4 col-12' : 'col-xl-3 col-lg-3 col-md-4 col-sm-4'">
           <div class="logo">
-            <a routerLink="/home/home-style-1">
+            <a routerLink="/home">
               <img src="/assets/img/logo/logo-no-background.png" alt="logo" width="70%">
             </a>
           </div>
@@ -35,7 +35,7 @@
                     <i class="ion-ios-search-strong"></i> Recherche
                   </a>
                 </li>
-                <li>
+                <li *ngIf="sessionService.isConnected()">
                   <a class="cart cursor-pointer">
                     <i class="ion-android-sync"></i> Echanges<span>({{exchangesService.getMyExchange().length}})</span>
                   </a>
@@ -43,10 +43,40 @@
                   <app-mini-cart [exchangeItems]="exchangesService.getMyExchange()"></app-mini-cart>
                   <!-- mini cart end -->
                 </li>
-                <li> <a class="cursor-pointer"><i class="far fa-bars"></i></a>
+                <li *ngIf="sessionService.isConnected()">
+                  <a [routerLink]="['/object/new']"
+                    class="cart cursor-pointer" style="padding: 0 10px;">
+                    <i class="fa fa-plus"></i>
+                    Nouvel Objet
+                  </a>
+                </li>
+                <li *ngIf="sessionService.isConnected()">
+                  <a [routerLink]="['/object/my-objects']" class="cart cursor-pointer"
+                    style="padding: 0 10px;">
+                    <i class="fa fa-crown"></i>
+                    Mes Objets
+                  </a>
+                </li>
+                <li *ngIf="sessionService.isConnected()">
+                  <a class="cursor-pointer">
+                    <img class="img-me" src="{{sessionService.userInfo?.profile_picture}}" alt="">
+                    <!-- <i class="far fa-bars"></i> -->
+                  </a>
                   <!-- extra info start -->
                   <app-extra-info></app-extra-info>
                   <!-- extra info end -->
+                </li>
+                <li *ngIf="!sessionService.isConnected()">
+                  <button [routerLink]="['/auth/login']" type="submit" class="os-btn os-btn-black">
+                    <i class="fa fa-right-to-bracket"></i>
+                    Connexion
+                  </button>
+                </li>
+                <li *ngIf="!sessionService.isConnected()">
+                  <button [routerLink]="['/auth/register']" routerLink="/home" type="submit" class="os-btn">
+                    <i class="fa fa-user"></i>
+                    Inscription
+                  </button>
                 </li>
               </ul>
             </div>

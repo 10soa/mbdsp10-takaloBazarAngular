@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { USERID, USERNAME } from 'src/app/constants/app.constants';
+import { TOKEN_NAME, USERID, USERNAME } from 'src/app/constants/app.constants';
 import { UserService } from 'src/app/services/user.service';
 import { User } from 'src/app/models/user.model';
 import { AuthService } from 'src/app/services/auth.service';
@@ -101,6 +101,7 @@ export class AccountComponent implements OnInit {
   logout(): void {
     this.authService.logout().subscribe(response => {
       this.toastrService.success(response.message);
+      localStorage.setItem(TOKEN_NAME, '');
       this.router.navigate(['/auth/login']);
     }, error => {
       this.toastrService.error(error);

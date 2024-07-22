@@ -29,6 +29,7 @@ export class HttpConfigInterceptor implements HttpInterceptor {
     return next.handle(request).pipe(
       catchError((error: HttpErrorResponse) => {
         if (error.status === 401) {
+          localStorage.setItem(TOKEN_NAME, '');
           this.router.navigate(['/auth/login']);
         }
         console.error('HTTP error occurred:', error);

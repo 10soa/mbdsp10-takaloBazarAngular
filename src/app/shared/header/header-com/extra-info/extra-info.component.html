@@ -2,40 +2,23 @@
   <li>
     <div class="my-account">
       <div class="extra-title">
-        <h5>My Account</h5>
+        <h5>{{sessionService.userInfo?.first_name}} {{sessionService.userInfo?.last_name}}
+          ({{sessionService.userInfo?.username}})</h5>
       </div>
       <ul>
-        <li><a routerLink="/shop/wishlist">Wishlist</a></li>
-        <li><a routerLink="/shop/cart">Cart</a></li>
-        <li><a routerLink="/shop/checkout">Checkout</a></li>
-        <li><a routerLink="/shop/register">Create Account</a></li>
-        <li><a routerLink="/shop/account">Account</a></li>
+        <li><a href="mailto:{{sessionService.userInfo?.email}}">{{sessionService.userInfo?.email}}</a></li>
       </ul>
     </div>
   </li>
   <li>
-    <div class="lang">
-      <div class="extra-title">
-        <h5>Language</h5>
-      </div>
+    <div class="">
       <ul>
-        <li><a href="#">English</a></li>
-        <li><a href="#">France</a></li>
-        <li><a href="#">Germany</a></li>
-        <li><a href="#">Bangla</a></li>
-      </ul>
-    </div>
-  </li>
-  <li>
-    <div class="currency">
-      <div class="extra-title">
-        <h5>currency</h5>
-      </div>
-      <ul>
-        <li><a href="#">USD - US Dollar</a></li>
-        <li><a href="#">EUR - Ruro</a></li>
-        <li><a href="#">GBP - Britis Pound</a></li>
-        <li><a href="#">INR - Indian Rupee</a></li>
+        <li>
+          <button (click)="logout()" routerLink="/home" type="submit" class="os-btn button">
+            <i class="fa fa-door-open"></i>
+            Se déconnecter
+          </button>
+        </li>
       </ul>
     </div>
   </li>
