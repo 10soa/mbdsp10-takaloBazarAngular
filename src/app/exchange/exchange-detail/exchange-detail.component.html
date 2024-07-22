@@ -27,14 +27,14 @@
   <section *ngIf="!loading" class="shop__area pt-100 pb-100">
     <div class="container">
       <div class="card">
-        <div class="card-header" id="headingOne">
+        <div class="card-header bg-light-gray text-black" id="headingOne">
           <div class="row align-items-center">
             <div class="col-4 status">
               <strong class="status-label">Statut: </strong> {{ getStatusLabel(exchange.status) }} ({{
               exchange.updated_at | date: 'dd/MM/yyyy' }})
             </div>
-            <div class="col-8">
-              <h5 class="mb-0 align-items-right" style="text-align: right;" *ngIf="!closed">
+            <div class="col-8 text-right">
+              <h5 class="mb-0" *ngIf="!closed && isCurrentUserReceiver()">
                 <button class="os-btn os-btn-black ml-10 mb-10 button" (click)="showAcceptExchangeComponent()">
                   <i class="fa fa-thumbs-up"></i>
                   Accepter
@@ -49,8 +49,8 @@
         </div>
         <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
           <div class="card-body pt-4">
-            <div class="row">
-              <div class="col-md-4 text-center">
+            <div class="row text-center">
+              <div class="col-md-4">
                 <img [src]="exchange.proposer?.profile_picture" alt="Proposer Image" class="img-circle">
                 <br>
                 <a [routerLink]="['/account', exchange.proposer_user_id]">{{ exchange.proposer.username }}</a>
@@ -58,7 +58,7 @@
               <div class="col-md-4 center">
                 <i class="fa fa-arrow-right fa-2x"></i>
               </div>
-              <div class="col-md-4 text-center">
+              <div class="col-md-4">
                 <img [src]="exchange.receiver?.profile_picture" alt="Receiver Image" class="img-circle">
                 <br>
                 <a [routerLink]="['/account', exchange.receiver_user_id]">{{ exchange.receiver.username }}</a>
@@ -67,22 +67,22 @@
             <hr>
             <div class="row">
               <div class="col-6">
-                <div class="order__info-top d-flex justify-content-between align-items-center">
+                <div class="order__info-top d-flex justify-content-center align-items-center bg-light-gray text-black p-2">
                   <h3 class="order__info-title">Proposition</h3>
                 </div>
                 <div class="row p-5 py-1">
-                  <div *ngFor="let item of propositionObjects" class="col-5">
+                  <div *ngFor="let item of propositionObjects" class="col-5 mb-3">
                     <app-object-card [object]="item.object"></app-object-card>
                   </div>
                 </div>
               </div>
 
               <div class="col-6">
-                <div class="order__info-top d-flex justify-content-between align-items-center">
+                <div class="order__info-top d-flex justify-content-center align-items-center bg-light-gray text-black p-2">
                   <h3 class="order__info-title">Contre</h3>
                 </div>
                 <div class="row p-5 py-1">
-                  <div *ngFor="let item of receiverObjects" class="col-5">
+                  <div *ngFor="let item of receiverObjects" class="col-5 mb-3">
                     <app-object-card [object]="item.object"></app-object-card>
                   </div>
                 </div>
@@ -91,22 +91,26 @@
 
             <hr>
 
-            <div class="order__info-top d-flex justify-content-between align-items-center" style="margin: 0;">
+            <div class="order__info-top d-flex justify-content-center align-items-center bg-light-gray text-black p-2" style="margin: 0;">
               <h3 class="order__info-title"><i class="fa fa-info"></i> Détails</h3>
             </div>
             <div class="profile__menu-tab">
-              <div class="profile__info-wrapper white-bg">
+              <div class="profile__info-wrapper white-bg p-3">
                 <div class="profile__info-item">
-                  <p>Depuis</p>
+                  <p>Depuis :</p>
                   <h4>{{exchange?.created_at | date: 'dd/MM/yyyy'}}</h4>
                 </div>
                 <div class="profile__info-item">
-                  <p>Lieu de rendez vous</p>
+                  <p>Lieu du rendez vous :</p>
                   <h4>{{exchange?.meeting_place}}</h4>
                 </div>
                 <div class="profile__info-item">
-                  <p>Note</p>
+                  <p>Note :</p>
                   <h4>{{exchange?.note}}</h4>
+                </div>
+                <div class="profile__info-item">
+                  <p>Date du rendez-vous :</p>
+                  <h4>{{exchange?.appointment_date | date: 'dd/MM/yyyy'}}</h4>
                 </div>
               </div>
             </div>

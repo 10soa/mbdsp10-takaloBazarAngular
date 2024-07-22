@@ -23,7 +23,7 @@
 
             <div class="object-details__tag mb-25">
               <span><i class="fas fa-info-circle"></i> Status:</span>
-              <span>{{object.status}}</span>
+              <span>{{ getStatusLabel(object.status) }}</span>
             </div>
 
             <div class="object-details__tag mb-25">
@@ -63,4 +63,3 @@
   </section>
 </main>
 <app-footer-one></app-footer-one>
-    

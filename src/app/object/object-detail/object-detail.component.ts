@@ -54,6 +54,21 @@ export class ObjectDetailComponent implements OnInit {
     );
   }
 
+  getStatusLabel(status: string | undefined): string {
+    if (!status) {
+      return 'Statut inconnu';
+    }
+    switch (status) {
+      case 'Available':
+        return 'Disponible';
+      case 'Removed':
+        return 'Retirer';
+      default:
+        return status;
+    }
+  }
+  
+
   removeObject(): void {
     if (this.object) {
       this.objectService.removeObject(this.object.id).subscribe(
