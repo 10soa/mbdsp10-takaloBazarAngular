@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ExchangesService } from 'src/app/services/exchange.service';
 import { AddNoteComponent } from './addNote/add-note.component';
 import { AcceptExchangeComponent } from './accept-exchange/accept-exchange.component';
+import { SessionService } from 'src/app/services/session.service';
 
 @Component({
   selector: 'app-exchange-detail',
@@ -17,11 +18,13 @@ export class ExchangeDetailComponent implements OnInit {
   propositionObjects: any[] = [];
   receiverObjects: any[] = [];
   lastActionDate?: Date;
+  currentUserId: string | null = null;
 
   constructor(
     private route: ActivatedRoute,
     private exchangesService: ExchangesService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private sessionService: SessionService
   ) { }
 
   ngOnInit(): void {
@@ -29,9 +32,11 @@ export class ExchangeDetailComponent implements OnInit {
       const exchangeId = params['id'];
       this.fetchExchangeDetails(exchangeId);
     });
+    this.currentUserId = this.sessionService.getUserIdFromToken();
   }
 
   fetchExchangeDetails(exchangeId: string): void {
+    this.loading = true;
     this.exchangesService.getExchangeById(exchangeId).subscribe((data: any) => {
       console.log('Exchange', data);
       this.exchange = data;
@@ -58,31 +63,36 @@ export class ExchangeDetailComponent implements OnInit {
         return 'Accepté';
       case 'Refused':
         return 'Refusé';
+        case 'Cancelled':
+        return 'Annulé';
       default:
         return status;
     }
   }
 
-  refusedExchange(id:string){
+  refusedExchange(id: string): void {
     const dialogConfig = new MatDialogConfig();
-    dialogConfig.data=id;
-    const dialog = this.dialog.open(AddNoteComponent,dialogConfig);
+    dialogConfig.data = id;
+    const dialog = this.dialog.open(AddNoteComponent, dialogConfig);
     dialog.componentInstance.setDialogRef(dialog);
     dialog.afterClosed().subscribe(() => {
       this.fetchExchangeDetails(id);
     });
   }
 
-  showAcceptExchangeComponent (){
+  showAcceptExchangeComponent(): void {
     const dialogConfig = new MatDialogConfig();
-    dialogConfig.data= this.exchange.id;
-    const dialog = this.dialog.open(AcceptExchangeComponent,dialogConfig);
+    dialogConfig.data = this.exchange.id;
+    const dialog = this.dialog.open(AcceptExchangeComponent, dialogConfig);
     dialog.componentInstance.setDialogRef(dialog);
     dialog.afterClosed().subscribe(result => {
-      if(result){
+      if (result) {
         this.fetchExchangeDetails(result);
       }
     });
   }
 
+  isCurrentUserReceiver(): boolean {
+    return this.currentUserId === this.exchange.receiver_user_id;
+  }
 }

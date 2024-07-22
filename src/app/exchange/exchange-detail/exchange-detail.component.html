@@ -34,7 +34,7 @@
               exchange.updated_at | date: 'dd/MM/yyyy' }})
             </div>
             <div class="col-8">
-              <h5 class="mb-0 align-items-right" style="text-align: right;" *ngIf="!closed">
+              <h5 class="mb-0 align-items-right" style="text-align: right;" *ngIf="!closed && isCurrentUserReceiver()">
                 <button class="os-btn os-btn-black ml-10 mb-10 button" (click)="showAcceptExchangeComponent()">
                   <i class="fa fa-thumbs-up"></i>
                   Accepter
@@ -107,6 +107,10 @@
                 <div class="profile__info-item">
                   <p>Note</p>
                   <h4>{{exchange?.note}}</h4>
+                </div>
+                <div class="profile__info-item">
+                  <p>Date du rendez-vous</p>
+                  <h4>{{exchange?.appointment_date | date: 'dd/MM/yyyy'}}</h4>
                 </div>
               </div>
             </div>
