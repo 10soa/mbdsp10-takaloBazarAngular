@@ -61,4 +61,8 @@ export class AddNoteComponent implements OnInit {
     });
   }
 
+  closed(){
+    this.dialogRef.close();
+  }
+
 }

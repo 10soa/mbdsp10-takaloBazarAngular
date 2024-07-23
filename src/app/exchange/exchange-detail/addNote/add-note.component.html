@@ -6,7 +6,8 @@
       </div>
       <div class="password__input">
         <button type="submit" class="os-btn os-btn-black">Soumettre  <span *ngIf="loading" class="spinner-border spinner-border-sm" role="status"
-            aria-hidden="true"></span></button>
-      </div>
+            aria-hidden="true"></span></button> 
+            <button type="button" (click)="closed()" class="os-btn os-btn-red" style="float: right;">Annuler</button>
+       </div>
     </form>
   </div>
