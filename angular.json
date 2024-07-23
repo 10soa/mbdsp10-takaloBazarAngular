@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "ng-outstock": {
+    "takaloBazar": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/ng-outstock",
+            "outputPath": "dist/takaloBazar",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": [
@@ -67,10 +67,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "ng-outstock:build:production"
+              "browserTarget": "takaloBazar:build:production"
             },
             "development": {
-              "browserTarget": "ng-outstock:build:development"
+              "browserTarget": "takaloBazar:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -78,7 +78,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "ng-outstock:build"
+            "browserTarget": "takaloBazar:build"
           }
         },
         "test": {
