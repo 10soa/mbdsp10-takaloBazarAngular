@@ -9,19 +9,30 @@
     <!-- side-mobile-menu start -->
     <nav class="side-mobile-menu d-block d-lg-none mm-menu">
       <ul>
-        <ng-container *ngFor="let menu of mobile_menus; let i = index">
-          <li [ngClass]="'menu-item-has-children has-droupdown ' + (activeMenu === menu.title ? 'active' : '')">
-            <a (click)="handleOpenMenu(menu.title)">{{ menu.title }}</a>
-            <ul [ngClass]="'sub-menu ' + (activeMenu === menu.title ? 'active' : '')">
-              <li *ngFor="let sub_m of menu.dropdownMenu; let index = index">
-                <a [routerLink]="sub_m.link">{{ sub_m.title }}</a>
-              </li>
-            </ul>
-          </li>
-          <li *ngIf="!menu.dropdownMenu">
-            <a [routerLink]="menu.link">{{ menu.title }}</a>
-          </li>
-        </ng-container>
+        <li [ngClass]="'menu-item-has-children'">
+          <div class="mobile-menu-btn d-lg-none">
+            <a (click)="utilsService.handleOpenMobileMenu()" class="mobile-menu-toggle cursor-pointer">
+              <i class="fas fa-bars"></i>
+            </a>
+          </div>
+        </li>
+        <li [ngClass]="'menu-item-has-children'">
+          <a (click)="utilsService.handleSearchOpen()" class="search-toggle cursor-pointer">
+            <i class="ion-ios-search-strong"></i> Recherche
+          </a>
+        </li>
+        <li [ngClass]="'menu-item-has-children'" *ngIf="sessionService.isConnected()">
+          <a [routerLink]="['/object/new']" class="cart cursor-pointer">
+            <i class="fa fa-plus"></i>
+            Nouvel Objet
+          </a>
+        </li>
+        <li [ngClass]="'menu-item-has-children'" *ngIf="sessionService.isConnected()">
+          <a [routerLink]="['/object/my-objects']" class="cart cursor-pointer">
+            <i class="fa fa-crown"></i>
+            Mes Objets
+          </a>
+        </li>
       </ul>
     </nav>
     <!-- side-mobile-menu end -->
@@ -29,7 +40,5 @@
 </section>
 
 <!--  body overlay  -->
-<div
-(click)="utilsService.handleOpenMobileMenu()"
-  [ngClass]="'body-overlay transition-3 ' + (utilsService.openMobileMenus ? 'opened' : '')"
-></div>
+<div (click)="utilsService.handleOpenMobileMenu()"
+  [ngClass]="'body-overlay transition-3 ' + (utilsService.openMobileMenus ? 'opened' : '')"></div>

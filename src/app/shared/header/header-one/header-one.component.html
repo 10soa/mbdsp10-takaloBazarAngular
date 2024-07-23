@@ -28,6 +28,7 @@
                 <i class="fas fa-bars"></i>
               </a>
             </div>
+
             <div *ngIf="!header_big" class="header__action">
               <ul>
                 <li>
@@ -43,16 +44,14 @@
                   <app-mini-cart [exchangeItems]="exchangesService.getMyExchange()"></app-mini-cart>
                   <!-- mini cart end -->
                 </li>
-                <li *ngIf="sessionService.isConnected()">
-                  <a [routerLink]="['/object/new']"
-                    class="cart cursor-pointer" style="padding: 0 10px;">
+                <li class="desktop-only" *ngIf="sessionService.isConnected()">
+                  <a [routerLink]="['/object/new']" class="cart cursor-pointer" style="padding: 0 10px;">
                     <i class="fa fa-plus"></i>
                     Nouvel Objet
                   </a>
                 </li>
-                <li *ngIf="sessionService.isConnected()">
-                  <a [routerLink]="['/object/my-objects']" class="cart cursor-pointer"
-                    style="padding: 0 10px;">
+                <li class="desktop-only" *ngIf="sessionService.isConnected()">
+                  <a [routerLink]="['/object/my-objects']" class="cart cursor-pointer" style="padding: 0 10px;">
                     <i class="fa fa-crown"></i>
                     Mes Objets
                   </a>
@@ -67,16 +66,20 @@
                   <!-- extra info end -->
                 </li>
                 <li *ngIf="!sessionService.isConnected()">
-                  <button [routerLink]="['/auth/login']" type="submit" class="os-btn os-btn-black">
-                    <i class="fa fa-right-to-bracket"></i>
-                    Connexion
-                  </button>
+                  <div class="action-box">
+                    <button [routerLink]="['/auth/login']" type="submit" class="os-btn os-btn-black button">
+                      <i class="fa fa-right-to-bracket"></i>
+                      Connexion
+                    </button>
+                  </div>
                 </li>
                 <li *ngIf="!sessionService.isConnected()">
-                  <button [routerLink]="['/auth/register']" routerLink="/home" type="submit" class="os-btn">
-                    <i class="fa fa-user"></i>
-                    Inscription
-                  </button>
+                  <div class="action-box">
+                    <button [routerLink]="['/auth/register']" routerLink="/home" type="submit" class="os-btn button">
+                      <i class="fa fa-user"></i>
+                      Inscription
+                    </button>
+                  </div>
                 </li>
               </ul>
             </div>
