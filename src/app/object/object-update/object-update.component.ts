@@ -99,6 +99,7 @@ export class ObjectUpdateComponent {
   }
 
   updateObject(form: NgForm): void {
+    this.error = '';
     if (form.invalid) {
       return;
     }
@@ -128,5 +129,11 @@ export class ObjectUpdateComponent {
         this.loading = false;
       }
     );
+  }
+
+  gotoFiche(){
+    console.log('oka');
+    
+    this.router.navigate([`/object/${this.objectId}`]);
   }
 }
