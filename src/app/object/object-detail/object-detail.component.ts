@@ -22,7 +22,7 @@ export class ObjectDetailComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private objectService: ObjectService,
-    private sessionService: SessionService,
+    public sessionService: SessionService,
     private toastr: ToastrService,
     private router: Router,
     private modalService: NgbModal,
