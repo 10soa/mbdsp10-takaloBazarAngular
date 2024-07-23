@@ -42,9 +42,8 @@ export class ObjectSearchComponent implements OnInit {
       this.category_id = params['category_id'] ? +params['category_id'] : null;
       this.created_at_start = params['created_at_start'] || '';
       this.created_at_end = params['created_at_end'] || '';
+      this.loadObjects();
     });
-
-    this.loadObjects();
     this.loadCategories();
   }
 
