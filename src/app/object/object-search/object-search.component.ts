@@ -16,7 +16,7 @@ export class ObjectSearchComponent implements OnInit {
   public pageNo: number = 1;
   public pageSize: number = 12;
   public paginate: any = {};
-  public sortBy: string = 'asc';
+  public sortBy: string = 'DESC';
   public itemStart: number = 1;
   public itemEnd: number = this.pageSize;
   public loading: boolean = false;  // New loading state
