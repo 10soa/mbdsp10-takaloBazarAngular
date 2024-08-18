@@ -113,7 +113,7 @@ export class AccountComponent implements OnInit {
       this.loading=true;
       const formData = {
         ...this.accountForm.value,
-        profile_picture: this.profilePictureBase64
+        image: this.profilePictureBase64
       };
       if (this.userId) {
         this.userService.updateUserProfile(this.userId, formData).subscribe(response => {
