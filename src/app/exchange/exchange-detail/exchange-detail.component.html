@@ -24,7 +24,7 @@
     </section>
   </div>
 
-  <section *ngIf="!loading" class="shop__area pt-100 pb-100">
+  <section *ngIf="!loading" class="shop__area pt-100">
     <div class="container">
       <div class="card">
         <div class="card-header bg-light-gray text-black" id="headingOne">
@@ -119,6 +119,9 @@
       </div>
     </div>
   </section>
+  <div class="container mb-100 {{loading || !needMap ? 'hide' : ''}}">
+    <div id="map" style="height: 400px;"></div>
+  </div>
 </main>
 
 <app-footer-one></app-footer-one>

@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatTableModule } from '@angular/material/table';
-import { Router, ActivatedRoute, NavigationExtras } from '@angular/router';
+import { Router, ActivatedRoute, NavigationExtras, RouterModule } from '@angular/router';
 import { ExchangesService } from 'src/app/services/exchange.service';
 import { SessionService } from 'src/app/services/session.service';
 import { SharedModule } from 'src/app/shared/shared.module';
@@ -17,7 +17,8 @@ import { SharedModule } from 'src/app/shared/shared.module';
     FormsModule,
     ReactiveFormsModule,
     MatTableModule,
-    SharedModule
+    SharedModule,
+    RouterModule
   ]
 })
 export class ExchangeHistoryComponent implements OnInit {

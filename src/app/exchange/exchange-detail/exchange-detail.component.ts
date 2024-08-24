@@ -1,17 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { ExchangesService } from 'src/app/services/exchange.service';
-import { AddNoteComponent } from './addNote/add-note.component';
-import { AcceptExchangeComponent } from './accept-exchange/accept-exchange.component';
 import { SessionService } from 'src/app/services/session.service';
+import * as L from 'leaflet';
+import { AcceptExchangeComponent } from './accept-exchange/accept-exchange.component';
+import { AddNoteComponent } from './addNote/add-note.component';
 
 @Component({
   selector: 'app-exchange-detail',
   templateUrl: './exchange-detail.component.html',
   styleUrls: ['./exchange-detail.component.scss']
 })
-export class ExchangeDetailComponent implements OnInit {
+export class ExchangeDetailComponent implements OnInit, AfterViewInit {
   exchange: any;
   loading: boolean = true;
   closed: boolean = false;
@@ -19,6 +20,8 @@ export class ExchangeDetailComponent implements OnInit {
   receiverObjects: any[] = [];
   lastActionDate?: Date;
   currentUserId: string | null = null;
+  map: L.Map | undefined;
+  needMap: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -35,19 +38,54 @@ export class ExchangeDetailComponent implements OnInit {
     this.currentUserId = this.sessionService.getUserIdFromToken();
   }
 
+  ngAfterViewInit(): void {
+    this.initializeMap();
+  }
+
   fetchExchangeDetails(exchangeId: string): void {
     this.loading = true;
     this.exchangesService.getExchangeById(exchangeId).subscribe((data: any) => {
-      console.log('Exchange', data);
       this.exchange = data;
       this.closed = this.exchange.status !== 'Proposed';
       this.divideExchangeObjects();
       this.lastActionDate = this.exchange.date || this.exchange.created_at;
       this.loading = false;
+      this.needMap = this.exchange.latitude && this.exchange.longitude;
+
+      // Add marker after the exchange is retrieved
+      if (this.map && this.exchange.latitude && this.exchange.longitude) {
+        L.marker([this.exchange.latitude, this.exchange.longitude]).addTo(this.map)
+          .bindPopup(`L'échange se tiendra ici 😉`)
+          .openPopup();
+        this.map.flyTo([this.exchange.latitude, this.exchange.longitude], 15);
+      } else {
+        console.error('Map is not initialized or coordinates are missing.');
+      }
     }, error => {
       console.error('Error fetching exchange details:', error);
       this.loading = false;
     });
+  }
+
+  initializeMap(): void {
+    const mapElement = document.getElementById('map');
+
+    L.Icon.Default.mergeOptions({
+      iconRetinaUrl: 'assets/img/leaflet/marker-icon-2x.png',
+      iconUrl: 'assets/img/leaflet/marker-icon.png',
+      shadowUrl: 'assets/img/leaflet/marker-shadow.png',
+    });
+
+    if (mapElement && !this.map) {
+      // Initialize the map and center it on Madagascar
+      this.map = L.map(mapElement).setView([-18.879190, 47.507905], 6);
+
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 18,
+      }).addTo(this.map);
+    } else {
+      console.error('Map container not found or already initialized.');
+    }
   }
 
   divideExchangeObjects(): void {
@@ -63,7 +101,7 @@ export class ExchangeDetailComponent implements OnInit {
         return 'Accepté';
       case 'Refused':
         return 'Refusé';
-        case 'Cancelled':
+      case 'Cancelled':
         return 'Annulé';
       default:
         return status;

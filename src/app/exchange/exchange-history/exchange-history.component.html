@@ -62,7 +62,7 @@
           <ng-container matColumnDef="action">
             <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
             <mat-cell *matCellDef="let element">
-              <button style="padding: 2px 8px;" mat-button color="primary">
+              <button style="padding: 2px 8px;" [routerLink]="['/exchange', element.id]" mat-button color="primary">
                 <i class="fal fa-eye"></i>
               </button>
             </mat-cell>
