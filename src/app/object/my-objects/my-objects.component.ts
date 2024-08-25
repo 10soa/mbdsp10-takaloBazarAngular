@@ -32,7 +32,7 @@ export class MyObjectsComponent implements OnInit {
     this.loading = true;
     const userId = Number(this.sessionService.getUserIdFromToken()); 
     if (userId) {
-      this.objectService.getUserObjects(userId, { page: this.page, limit: this.limit }).subscribe(
+      this.objectService.getUserObjects(userId, { page: this.page, limit: this.limit,order_direction : this.sortBy }).subscribe(
         (response: any) => {
           this.objects = response.data.objects;
           this.totalItems = response.data.totalItems || this.objects.length; 

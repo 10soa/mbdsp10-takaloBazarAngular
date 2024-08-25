@@ -58,12 +58,9 @@
                 </li>
                 <li *ngIf="sessionService.isConnected()">
                   <a class="cursor-pointer">
-                    <img class="img-me" src="{{sessionService.userInfo?.profile_picture}}" alt="">
-                    <!-- <i class="far fa-bars"></i> -->
+                    <img class="img-me fixed-size" src="{{sessionService.userInfo?.profile_picture}}" alt="">
                   </a>
-                  <!-- extra info start -->
                   <app-extra-info></app-extra-info>
-                  <!-- extra info end -->
                 </li>
                 <li *ngIf="!sessionService.isConnected()">
                   <div class="action-box">

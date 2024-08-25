@@ -55,10 +55,12 @@ export class LoginComponent {
             this.loginForm.reset();
             this.formSubmitted = false;
             this.loading=false;
-            this.router.navigate(['/']);
+            this.router.navigate(['/']).then(() => {
+              window.location.reload();
+          });
           },
           (error: any) => {
-            this.error = error.error;
+            this.error = error.error.error || 'Erreur inconnue';
             this.loginForm.reset();
             this.formSubmitted = false;
             this.loading=false;
